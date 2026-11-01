@@ -1,0 +1,2209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luyện thi IELTS</title>
+<style>
+  :root {
+    --ink: #1c2530;
+    --ink-soft: #55606c;
+    --ink-faint: #8b95a1;
+    --paper: #fbfaf7;
+    --paper-raised: #ffffff;
+    --line: #e4dfd4;
+    --accent: #9b5a3c;
+    --accent-soft: #f2e3da;
+    --accent-ink: #7a4429;
+    --good: #3f7a4f;
+    --good-bg: #e7f2e9;
+    --bad: #b0402f;
+    --bad-bg: #fbe9e5;
+    --warn-bg: #fdf3e3;
+    --focus: #9b5a3c;
+    --nav-done: #d9cdbb;
+    --nav-current: #9b5a3c;
+    --shadow: 0 1px 2px rgba(28,37,48,.06), 0 4px 16px rgba(28,37,48,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #ece7de;
+      --ink-soft: #b7b0a3;
+      --ink-faint: #837c70;
+      --paper: #17140f;
+      --paper-raised: #211d16;
+      --line: #362f24;
+      --accent: #d98f66;
+      --accent-soft: #362619;
+      --accent-ink: #eab08a;
+      --good: #79c58e;
+      --good-bg: #17301f;
+      --bad: #e5897a;
+      --bad-bg: #331714;
+      --warn-bg: #332c17;
+      --focus: #d98f66;
+      --nav-done: #3a3226;
+      --nav-current: #d98f66;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #ece7de;
+    --ink-soft: #b7b0a3;
+    --ink-faint: #837c70;
+    --paper: #17140f;
+    --paper-raised: #211d16;
+    --line: #362f24;
+    --accent: #d98f66;
+    --accent-soft: #362619;
+    --accent-ink: #eab08a;
+    --good: #79c58e;
+    --good-bg: #17301f;
+    --bad: #e5897a;
+    --bad-bg: #331714;
+    --warn-bg: #332c17;
+    --focus: #d98f66;
+    --nav-done: #3a3226;
+    --nav-current: #d98f66;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 15px/1.5 "Source Serif 4", Georgia, "Times New Roman", serif;
+    padding-inline: 16px;
+  }
+  .ui { font-family: "Inter", -apple-system, system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; margin: 0; }
+  a { color: var(--accent-ink); }
+  button { font-family: inherit; cursor: pointer; }
+  ::selection { background: var(--accent-soft); }
+
+  /* ---------- shell ---------- */
+  #app { max-width: 1180px; margin: 0 auto; padding-block: 24px 60px; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(155deg, var(--accent), var(--accent-ink));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: "Fraunces", serif; font-weight: 600; font-size: 16px;
+    flex: none;
+  }
+  .brand-name { font-family: "Fraunces", serif; font-weight: 600; font-size: 18px; }
+  .brand-sub { font-family: "Inter", sans-serif; font-size: 12px; color: var(--ink-faint); }
+
+  .userchip {
+    display: flex; align-items: center; gap: 8px;
+    font-family: "Inter", sans-serif; font-size: 13px; color: var(--ink-soft);
+  }
+  .avatar {
+    width: 26px; height: 26px; border-radius: 50%; object-fit: cover;
+    border: 1px solid var(--line);
+  }
+
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    font-family: "Inter", sans-serif; font-size: 14px; font-weight: 600;
+    border-radius: 9px; border: 1px solid var(--line);
+    padding: 9px 16px; background: var(--paper-raised); color: var(--ink);
+    transition: background .12s, border-color .12s, transform .06s;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .btn-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-ghost { background: transparent; border-color: transparent; }
+  .btn-ghost:hover { background: var(--accent-soft); border-color: transparent; }
+  .btn-sm { padding: 6px 11px; font-size: 12.5px; }
+
+  /* ---------- auth ---------- */
+  #view-auth { display: flex; justify-content: center; padding-top: 8vh; }
+  .auth-card { width: 100%; max-width: 380px; padding: 32px 28px; text-align: center; }
+  .auth-card p { font-family: "Inter", sans-serif; color: var(--ink-soft); font-size: 14px; margin: 10px 0 22px; }
+  .auth-card input {
+    width: 100%; font-family: "Inter", sans-serif; font-size: 15px;
+    padding: 11px 13px; border-radius: 9px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink); margin-bottom: 10px;
+  }
+  .auth-card input:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .auth-note { font-family: "Inter", sans-serif; font-size: 12px; color: var(--ink-faint); margin-top: 14px; }
+
+  /* ---------- dashboard ---------- */
+  .section-label {
+    font-family: "Inter", sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 32px; }
+  .test-card { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .test-card h3 { font-size: 17px; }
+  .test-meta { font-family: "Inter", sans-serif; font-size: 12.5px; color: var(--ink-faint); }
+  .test-card .btn { align-self: flex-start; }
+
+  .history-table { width: 100%; border-collapse: collapse; font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .history-table th, .history-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .history-table th { color: var(--ink-faint); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .band-pill {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent-ink); font-weight: 700; font-size: 12.5px;
+  }
+  .empty-hint { font-family: "Inter", sans-serif; color: var(--ink-faint); font-size: 13.5px; padding: 18px 4px; }
+
+  /* ---------- exam ---------- */
+  #view-exam { display: none; }
+  .exam-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 10px 16px; border-radius: 12px; margin-bottom: 14px;
+    background: var(--paper-raised); border: 1px solid var(--line); box-shadow: var(--shadow);
+    flex-wrap: wrap; font-family: "Inter", sans-serif;
+  }
+  .exam-title { font-size: 13.5px; font-weight: 600; }
+  .timer {
+    font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px;
+    padding: 5px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--accent-ink);
+  }
+  .timer.low { background: var(--bad-bg); color: var(--bad); }
+
+  .passage-tabs { display: flex; gap: 6px; }
+  .ptab {
+    font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600;
+    padding: 7px 13px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink-soft);
+  }
+  .ptab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .exam-body { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .exam-body { grid-template-columns: 1fr; } }
+
+  .pane {
+    height: calc(100vh - 190px); min-height: 420px; overflow-y: auto;
+    padding: 22px 24px;
+  }
+  .passage-heading { font-size: 20px; margin-bottom: 4px; }
+  .passage-kicker { font-family: "Inter", sans-serif; font-size: 12px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 14px; }
+  .para { margin-bottom: 16px; }
+  .para-label { font-weight: 700; color: var(--accent-ink); margin-right: 6px; }
+
+  .qgroup { margin-bottom: 26px; }
+  .qgroup:last-child { margin-bottom: 4px; }
+  .qgroup-instructions {
+    font-family: "Inter", sans-serif; font-size: 13px; color: var(--ink-soft);
+    background: var(--accent-soft); border-radius: 9px; padding: 10px 13px; margin-bottom: 14px;
+  }
+  .options-box {
+    font-family: "Inter", sans-serif; font-size: 13px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 9px; padding: 12px 14px; margin-bottom: 14px;
+  }
+  .options-box .opt { display: flex; gap: 8px; padding: 2px 0; }
+  .options-box .opt b { color: var(--accent-ink); min-width: 22px; }
+
+  .qitem { display: flex; gap: 10px; align-items: baseline; margin-bottom: 12px; font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .qnum {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--paper); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--ink-soft); scroll-margin-top: 100px;
+  }
+  .qnum.answered { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink); }
+  .qprompt { flex: 1; }
+  .qprompt select, .qprompt input[type=text] {
+    font-family: "Inter", sans-serif; font-size: 13.5px; padding: 6px 9px;
+    border-radius: 7px; border: 1px solid var(--line); background: var(--paper-raised); color: var(--ink);
+    margin-left: 4px;
+  }
+  .qprompt select:focus, .qprompt input[type=text]:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .qtext-inline { color: var(--ink); }
+
+  .notes-block { font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .notes-heading { font-weight: 700; margin: 14px 0 8px; }
+  .notes-line { margin: 6px 0 6px 4px; display: flex; align-items: baseline; gap: 8px; }
+  .notes-bullet { color: var(--accent-ink); }
+
+  .multiselect-box { font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .ms-opt { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+  .ms-opt input { accent-color: var(--accent); }
+
+  /* nav grid */
+  .navgrid-wrap { padding: 14px 16px; margin-top: 14px; }
+  .navgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(30px,1fr)); gap: 6px; }
+  .navcell {
+    font-family: "Inter", sans-serif; font-size: 11.5px; font-weight: 700;
+    aspect-ratio: 1; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink-faint); display: flex; align-items: center; justify-content: center;
+  }
+  .navcell.done { background: var(--nav-done); color: var(--ink); border-color: var(--nav-done); }
+  .navcell.current { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+  .submit-row { display: flex; justify-content: flex-end; margin-top: 16px; gap: 10px; }
+
+  /* ---------- results ---------- */
+  #view-results { display: none; }
+  .score-hero { padding: 28px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin-bottom: 20px; }
+  .score-ring {
+    width: 108px; height: 108px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--line) 0);
+  }
+  .score-ring-inner {
+    width: 86px; height: 86px; border-radius: 50%; background: var(--paper-raised);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .score-ring-inner .n { font-family: "Fraunces", serif; font-size: 24px; font-weight: 700; }
+  .score-ring-inner .d { font-family: "Inter", sans-serif; font-size: 11px; color: var(--ink-faint); }
+  .score-text h2 { font-size: 22px; margin-bottom: 6px; }
+  .score-text .band { font-family: "Inter", sans-serif; font-size: 14px; color: var(--ink-soft); }
+  .score-text .band b { color: var(--accent-ink); font-size: 17px; }
+
+  .breakdown-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-bottom: 24px; }
+  .breakdown-tile { padding: 14px 16px; font-family: "Inter", sans-serif; }
+  .breakdown-tile .k { font-size: 12px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  .breakdown-tile .v { font-family: "Fraunces", serif; font-size: 20px; font-weight: 600; }
+
+  .review-item {
+    display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line);
+    font-family: "Inter", sans-serif; font-size: 13.5px; align-items: flex-start;
+  }
+  .review-item:last-child { border-bottom: none; }
+  .review-badge {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+  }
+  .review-badge.correct { background: var(--good-bg); color: var(--good); }
+  .review-badge.incorrect { background: var(--bad-bg); color: var(--bad); }
+  .review-body b.q { color: var(--ink-faint); font-weight: 600; margin-right: 4px; }
+  .review-answers { margin-top: 3px; color: var(--ink-soft); }
+  .review-answers .wrong { color: var(--bad); text-decoration: line-through; margin-right: 6px; }
+  .review-answers .right { color: var(--good); font-weight: 600; }
+
+  .results-actions { display: flex; gap: 10px; margin: 22px 0 8px; flex-wrap: wrap; }
+
+  .send-card { padding: 16px 18px; margin-bottom: 20px; font-family: "Inter", sans-serif; }
+  .send-status { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--ink-soft); }
+  .send-status.ok { color: var(--good); }
+  .send-status.fail { color: var(--bad); }
+  .send-help { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
+  .result-code {
+    width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
+    padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink); resize: vertical; margin-bottom: 10px;
+  }
+  .send-copied { font-size: 12.5px; color: var(--good); font-weight: 600; }
+
+  [hidden] { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+  /* ---------- teacher view ---------- */
+  #view-teacher { display: none; }
+  .teacher-gate { display: flex; justify-content: center; padding-top: 8vh; }
+  .teacher-gate .card { width: 100%; max-width: 380px; padding: 32px 28px; text-align: center; }
+  .teacher-gate p { font-family: "Inter", sans-serif; color: var(--ink-soft); font-size: 14px; margin: 10px 0 22px; }
+  .teacher-gate input {
+    width: 100%; font-family: "Inter", sans-serif; font-size: 15px;
+    padding: 11px 13px; border-radius: 9px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink); margin-bottom: 10px;
+  }
+  .teacher-gate .err { font-family: "Inter", sans-serif; font-size: 12.5px; color: var(--bad); min-height: 18px; margin-top: 6px; }
+
+  .teacher-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .teacher-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-bottom: 20px; }
+  .teacher-filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; font-family: "Inter", sans-serif; }
+  .teacher-filters select, .teacher-filters input {
+    font-family: "Inter", sans-serif; font-size: 13.5px; padding: 7px 10px;
+    border-radius: 8px; border: 1px solid var(--line); background: var(--paper-raised); color: var(--ink);
+  }
+
+  /* ---------- confirm modal (replaces window.confirm, blocked in artifact frames) ---------- */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(20,16,10,.45);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; padding: 16px;
+  }
+  .modal-box {
+    background: var(--paper-raised); border: 1px solid var(--line);
+    border-radius: 14px; box-shadow: var(--shadow);
+    max-width: 380px; width: 100%; padding: 22px 22px 18px;
+    font-family: "Inter", sans-serif;
+  }
+  .modal-box p { font-size: 14.5px; color: var(--ink); margin: 0 0 18px; line-height: 1.5; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+  /* ---- Listening mode ---- */
+  .exam-body.listening { grid-template-columns: 1fr; }
+  .exam-body.listening #passage-pane { height: auto; min-height: 0; overflow: visible; padding: 16px 22px; }
+  .exam-body.listening #question-pane { height: calc(100vh - 340px); min-height: 380px; }
+  .audio-panel { font-family: "Inter", sans-serif; }
+  .audio-panel h3 { margin: 0 0 6px; font-size: 16px; }
+  .audio-panel p { margin: 4px 0 10px; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+  .audio-panel [hidden] { display: none !important; }
+  .audio-bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; margin: 8px 0 4px; }
+  .audio-bar > div { height: 100%; width: 0%; background: var(--accent); transition: width .5s linear; }
+  .audio-time { font-size: 12px; color: var(--ink-faint); display: flex; justify-content: space-between; }
+  .audio-status { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--accent-ink); }
+  .audio-status.warn { color: var(--bad); }
+  .sec-header { font-family: "Fraunces", serif; font-size: 20px; margin: 26px 0 10px; padding-top: 14px; border-top: 2px solid var(--line); scroll-margin-top: 150px; }
+  .sec-header:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+  .mcq-item { margin-bottom: 16px; font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .mcq-q { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+  .mcq-opts { margin-left: 38px; }
+  .mcq-opts label { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; cursor: pointer; }
+  .mcq-opts input { accent-color: var(--accent); }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="app" class="ui">
+
+  <!-- ===================== AUTH VIEW ===================== -->
+  <div id="view-auth">
+    <div class="card auth-card">
+      <div class="brand-mark" style="margin:0 auto 14px;">IR</div>
+      <h1 style="font-size:22px;">Luyện thi IELTS</h1>
+      <p>Đăng nhập bằng tên để bắt đầu làm bài và lưu lại kết quả của bạn.</p>
+      <input id="name-input" type="text" placeholder="Tên của bạn" maxlength="40" autocomplete="off">
+      <button class="btn btn-primary" id="login-btn" style="width:100%;">Vào làm bài</button>
+      <div class="auth-note" id="auth-note"></div>
+    </div>
+  </div>
+
+  <!-- ===================== DASHBOARD VIEW ===================== -->
+  <div id="view-dashboard" hidden>
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">IR</div>
+        <div>
+          <div class="brand-name">Luyện thi IELTS</div>
+          <div class="brand-sub">Practice · Chấm điểm tự động</div>
+        </div>
+      </div>
+      <div class="userchip">
+        <img class="avatar" id="dash-avatar" src="" alt="">
+        <span id="dash-username"></span>
+        <button class="btn btn-ghost btn-sm" id="switch-user-btn">Đổi tên</button>
+      </div>
+    </div>
+
+    <div class="section-label">Đề thi</div>
+    <div class="test-grid" id="test-grid"></div>
+
+    <div class="section-label">Lịch sử làm bài của bạn</div>
+    <div class="card" style="overflow-x:auto;">
+      <table class="history-table" id="history-table">
+        <thead>
+          <tr><th>Đề thi</th><th>Điểm</th><th>Band</th><th>Thời gian nộp</th></tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+      <div class="empty-hint" id="history-empty" hidden>Bạn chưa làm bài nào. Chọn một đề ở trên để bắt đầu.</div>
+    </div>
+  </div>
+
+  <!-- ===================== TEACHER VIEW ===================== -->
+  <div id="view-teacher">
+    <!-- password gate -->
+    <div id="teacher-gate" class="teacher-gate">
+      <div class="card">
+        <div class="brand-mark" style="margin:0 auto 14px;">GV</div>
+        <h1 style="font-size:22px;">Trang giáo viên</h1>
+        <p>Nhập mật khẩu để xem kết quả làm bài của học sinh.</p>
+        <input id="teacher-pw-input" type="password" placeholder="Mật khẩu" autocomplete="off">
+        <button class="btn btn-primary" id="teacher-pw-btn" style="width:100%;">Vào xem</button>
+        <div class="err" id="teacher-pw-err"></div>
+      </div>
+    </div>
+
+    <!-- results panel -->
+    <div id="teacher-panel" hidden>
+      <div class="teacher-toolbar">
+        <div class="brand">
+          <div class="brand-mark">GV</div>
+          <div>
+            <div class="brand-name">Kết quả học sinh</div>
+            <div class="brand-sub">Toàn bộ lượt làm bài đã ghi nhận</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-sm" id="teacher-refresh-btn">Làm mới</button>
+          <button class="btn btn-sm" id="teacher-exit-btn">Thoát</button>
+        </div>
+      </div>
+
+      <div class="teacher-stats" id="teacher-stats"></div>
+
+      <div class="teacher-filters">
+        <input id="teacher-search" type="text" placeholder="Tìm theo tên học sinh...">
+        <select id="teacher-test-filter"><option value="">Tất cả đề thi</option></select>
+      </div>
+
+      <div class="card" style="overflow-x:auto;">
+        <table class="history-table" id="teacher-table">
+          <thead>
+            <tr><th>Học sinh</th><th>Đề thi</th><th>Điểm</th><th>Band</th><th>Thời gian nộp</th><th>Ghi chú</th></tr>
+          </thead>
+          <tbody id="teacher-table-body"></tbody>
+        </table>
+        <div class="empty-hint" id="teacher-empty" hidden>Chưa có học sinh nào nộp bài.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== EXAM VIEW ===================== -->
+  <div id="view-exam">
+    <div class="exam-topbar">
+      <div>
+        <div class="exam-title" id="exam-title"></div>
+      </div>
+      <div class="passage-tabs" id="passage-tabs"></div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="timer" id="timer">60:00</div>
+        <button class="btn btn-primary btn-sm" id="submit-btn">Nộp bài</button>
+      </div>
+    </div>
+
+    <div class="exam-body">
+      <div class="pane card" id="passage-pane"></div>
+      <div class="pane card" id="question-pane"></div>
+    </div>
+
+    <div class="card navgrid-wrap">
+      <div class="section-label" style="margin-bottom:8px;">Điều hướng câu hỏi</div>
+      <div class="navgrid" id="navgrid"></div>
+      <div class="submit-row">
+        <button class="btn" id="exit-btn">Thoát (không lưu)</button>
+        <button class="btn btn-primary" id="submit-btn-2">Nộp bài</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== RESULTS VIEW ===================== -->
+  <div id="view-results">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">IR</div>
+        <div>
+          <div class="brand-name" id="results-test-title"></div>
+          <div class="brand-sub" id="results-sub"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card score-hero">
+      <div class="score-ring" id="score-ring">
+        <div class="score-ring-inner">
+          <div class="n" id="score-n">0/40</div>
+          <div class="d">câu đúng</div>
+        </div>
+      </div>
+      <div class="score-text">
+        <h2 id="score-headline">Kết quả của bạn</h2>
+        <div class="band">Band điểm ước tính: <b id="score-band">-</b></div>
+      </div>
+    </div>
+
+    <div class="card send-card">
+      <div class="send-status" id="send-status">Đang gửi kết quả cho cô...</div>
+      <div class="send-help">Để chắc chắn cô nhận được, hãy <b>chụp màn hình trang kết quả này</b> hoặc <b>sao chép mã bên dưới</b> gửi cho cô.</div>
+      <textarea id="result-code" class="result-code" rows="2" readonly></textarea>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <button class="btn btn-sm btn-primary" id="copy-code-btn">Sao chép mã kết quả</button>
+        <span class="send-copied" id="copy-feedback" hidden>Đã sao chép</span>
+      </div>
+    </div>
+
+    <div class="breakdown-grid" id="breakdown-grid"></div>
+
+    <div class="section-label">Xem lại chi tiết từng câu</div>
+    <div class="card" id="review-list" style="max-height:560px; overflow-y:auto;"></div>
+
+    <div class="results-actions">
+      <button class="btn btn-primary" id="back-to-dashboard-btn">Về trang chủ</button>
+      <button class="btn" id="retry-btn">Làm lại đề này</button>
+    </div>
+  </div>
+
+  <!-- ===================== CONFIRM MODAL ===================== -->
+  <div id="confirm-modal" class="modal-backdrop ui" hidden>
+    <div class="modal-box">
+      <p id="confirm-message"></p>
+      <div class="modal-actions">
+        <button class="btn" id="confirm-cancel-btn">Hủy</button>
+        <button class="btn btn-primary" id="confirm-ok-btn">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// IELTS Reading Test data — "Reading Test 2" (British Council, Road to IELTS)
+// Each test is a self-contained object. Add more tests by pushing
+// another object with a unique `id` into TESTS.
+// ============================================================
+
+const TESTS = [
+  {
+    id: "reading-test-2",
+    title: "Road to IELTS — Academic Reading Practice Test 2",
+    durationMinutes: 60,
+    passages: [
+      {
+        title: "Reading Passage 1",
+        heading: "THE MAGIC OF KEFIR",
+        paragraphs: [
+          { label: "A", text: "The shepherds of the North Caucasus region of Europe were only trying to transport milk the best way they knew how – in leather pouches strapped to the side of donkeys – when they made a significant discovery. A fermentation process would sometimes inadvertently occur en route, and when the pouches were opened up on arrival they would no longer contain milk but rather a pungent, effervescent, low-alcoholic substance instead. This unexpected development was a blessing in disguise. The new drink – which acquired the name kefir – turned out to be a health tonic, a naturally-preserved dairy product and a tasty addition to our culinary repertoire." },
+          { label: "B", text: "Although their exact origin remains a mystery, we do know that yeast-based kefir grains have always been at the root of the kefir phenomenon. These grains are capable of a remarkable feat: in contradistinction to most other items you might find in a grocery store, they actually expand and propagate with use. This is because the grains, which are granular to the touch and bear a slight resemblance to cauliflower rosettes, house active cultures that feed on lactose when added to milk. Consequently, a bigger problem for most kefir drinkers is not where to source new kefir grains, but what to do with the ones they already have!" },
+          { label: "C", text: "The great thing about kefir is that it does not require a manufacturing line in order to be produced. Grains can be simply thrown in with a batch of milk for ripening to begin. The mixture then requires a cool, dark place to live and grow, with periodic unsettling to prevent clumping (Caucasus inhabitants began storing the concoction in animal-skin satchels on the back of doors – every time someone entered the room the mixture would get lightly shaken). After about 24 hours the yeast cultures in the grains have multiplied and devoured most of the milk sugars, and the final product is then ready for human consumption." },
+          { label: "D", text: "Nothing compares to a person's first encounter with kefir. The smooth, uniform consistency rolls over the tongue in a manner akin to liquefied yoghurt. The sharp, tart pungency of unsweetened yoghurt is there too, but there is also a slight hint of effervescence, something most users will have previously associated only with mineral waters, soda or beer. Kefir also comes with a subtle aroma of yeast, and depending on the type of milk and ripening conditions, ethanol content can reach up to two or three percent – about on par with a decent lager – although you can expect around 0.8 to one per cent for a typical day-old preparation. This can bring out a tiny edge of alcohol in the kefir's flavour." },
+          { label: "E", text: "Although it has prevailed largely as a fermented milk drink, over the years kefir has acquired a number of other uses. Many bakers use it instead of starter yeast in the preparation of sourdough, and the tangy flavour also makes kefir an ideal buttermilk substitute in pancakes. Kefir also accompanies sour cream as one of the main ingredients in cold beetroot soup and can be used in lieu of regular cow's milk on granola or cereal. As a way to keep their digestive systems fine-tuned, athletes sometimes combine kefir with yoghurt in protein shakes." },
+          { label: "F", text: "Associated for centuries with pictures of Slavic babushkas clutching a shawl in one hand and a cup of kefir in the other, the unassuming beverage has become a minor celebrity of the nascent health food movement in the contemporary West. Every day, more studies pour out supporting the benefits of a diet high in probiotics. This trend toward consuming probiotics has engulfed the leisure classes in these countries to the point that it is poised to become, according to some commentators, \"the next multivitamin\". These days the word kefir is consequently more likely to bring to mind glamorous, yoga mat-toting women from Los Angeles than austere visions of blustery Eastern Europe." },
+          { label: "G", text: "Kefir's rise in popularity has encouraged producers to take short cuts or alter the production process. Some home users have omitted the ripening and culturation process while commercial dealers often add thickeners, stabilisers and sweeteners. But the beauty of kefir is that, at its healthiest and tastiest, it is a remarkably affordable, uncluttered process, as any accidental invention is bound to be. All that is necessary are some grains, milk and a little bit of patience. A return to the unadulterated kefir-making of old is in everyone's interest." },
+        ],
+        questions: [
+          {
+            type: "heading-match",
+            instructions: "Reading Passage 1 has seven paragraphs, A–G. Choose the correct heading for each paragraph from the list of headings below. Write the correct number, i–x.",
+            options: [
+              { key: "i", text: "A unique sensory experience" },
+              { key: "ii", text: "Getting back to basics" },
+              { key: "iii", text: "The gift that keeps on giving" },
+              { key: "iv", text: "Variations in alcohol content" },
+              { key: "v", text: "Old methods of transportation" },
+              { key: "vi", text: "Culinary applications" },
+              { key: "vii", text: "Making kefir" },
+              { key: "viii", text: "A fortunate accident" },
+              { key: "ix", text: "Kefir gets an image makeover" },
+              { key: "x", text: "Ways to improve taste" },
+            ],
+            items: [
+              { num: 1, prompt: "Section A", accepted: ["viii"] },
+              { num: 2, prompt: "Section B", accepted: ["iii"] },
+              { num: 3, prompt: "Section C", accepted: ["vii"] },
+              { num: 4, prompt: "Section D", accepted: ["i"] },
+              { num: 5, prompt: "Section E", accepted: ["vi"] },
+              { num: 6, prompt: "Section F", accepted: ["ix"] },
+              { num: 7, prompt: "Section G", accepted: ["ii"] },
+            ],
+          },
+          {
+            type: "short-answer",
+            instructions: "Answer the questions below using NO MORE THAN TWO WORDS from the passage for each answer.",
+            items: [
+              { num: 8, prompt: "What do kefir grains look like?", accepted: ["cauliflower rosettes"] },
+              { num: 9, prompt: "What needs to happen to kefir while it is ripening?", accepted: ["periodic unsettling"] },
+              { num: 10, prompt: "What will the yeast cultures have consumed before kefir is ready to drink?", accepted: ["milk sugars"] },
+              { num: 11, prompt: "The texture of kefir in the mouth is similar to what?", accepted: ["liquefied yoghurt"] },
+            ],
+          },
+          {
+            type: "multi-select",
+            instructions: "Choose TWO letters, A–E. Which TWO products are NOT mentioned as things which kefir can replace?",
+            options: [
+              { key: "A", text: "Ordinary cow's milk" },
+              { key: "B", text: "Buttermilk" },
+              { key: "C", text: "Sour cream" },
+              { key: "D", text: "Starter yeast" },
+              { key: "E", text: "Yoghurt" },
+            ],
+            num: "12-13",
+            pick: 2,
+            accepted: ["C", "E"],
+          },
+        ],
+      },
+      {
+        title: "Reading Passage 2",
+        heading: "FOOD FOR THOUGHT",
+        paragraphs: [
+          { label: "A", text: "Why not eat insects? So asked British entomologist Vincent M. Holt in the title of his 1885 treatise on the benefits of what he named entomophagy – the consumption of insects (and similar creatures) as a food source. The prospect of eating dishes such as \"wireworm sauce\" and \"slug soup\" failed to garner favour amongst those in the stuffy, proper, Victorian social milieu of his time, however, and Holt's visionary ideas were considered at best eccentric, at worst an offense to every refined palate. Anticipating such a reaction, Holt acknowledged the difficulty in unseating deep-rooted prejudices against insect cuisine, but quietly asserted his confidence that \"we shall some day quite gladly cook and eat them\"." },
+          { label: "B", text: "It has taken nearly 150 years but an eclectic Western-driven movement has finally mounted around the entomophagic cause. In Los Angeles and other cosmopolitan Western cities, insects have been caught up in the endless pursuit of novel and authentic delicacies. \"Eating grasshoppers is a thing you do here\", bug-supplier Bricia Lopez has explained. \"There's more of a 'cool' factor involved.\" Meanwhile, the Food and Agricultural Organization has considered a policy paper on the subject, initiated farming projects in Laos, and set down plans for a world congress on insect farming in 2013." },
+          { label: "C", text: "Eating insects is not a new phenomenon. In fact, insects and other such creatures are already eaten in 80 per cent of the world's countries, prepared in customary dishes ranging from deep-fried tarantula in Cambodia to bowls of baby bees in China. With the specialist knowledge that Western companies and organisations can bring to the table, however, these hand-prepared delicacies have the potential to be produced on a scale large enough to lower costs and open up mass markets. A new American company, for example, is attempting to develop pressurisation machines that would de-shell insects and make them available in the form of cutlets. According to the entrepreneur behind the company, Matthew Krisiloff, this will be the key to pleasing the uninitiated palate." },
+          { label: "D", text: "Insects certainly possess some key advantages over traditional Western meat sources. According to research findings from Professor Arnold van Huis, a Dutch entomologist, breeding insects results in far fewer noxious by-products. Insects produce less ammonia than pig and poultry farming, ten times less methane than livestock, and 300 times less nitrous oxide. Huis also notes that insects – being cold-blooded creatures – can convert food to protein at a rate far superior to that of cows, since the latter exhaust much of their energy just keeping themselves warm." },
+          { label: "E", text: "Although insects are sometimes perceived by Westerners as unhygienic or disease-ridden, they are a reliable option in light of recent global epidemics (as Holt pointed out many years ago, insects are \"decidedly more particular in their feeding than ourselves\"). Because bugs are genetically distant from humans, species-hopping diseases such as swine flu or mad cow disease are much less likely to start or spread amongst grasshoppers or slugs than in poultry and cattle. Furthermore, the squalid, cramped quarters that encourage diseases to propagate among many animal populations are actually the residence of choice for insects, which thrive in such conditions." },
+          { label: "F", text: "Then, of course, there are the commercial gains. As FAO Forestry Manager Patrick Durst notes, in developing countries many rural people and traditional forest dwellers have remarkable knowledge about managing insect populations to produce food. Until now, they have only used this knowledge to meet their own subsistence needs, but Durst believes that, with the adoption of modern technology and improved promotional methods, opportunities to expand the market to new consumers will flourish. This could provide a crucial step into the global economic arena for those primarily rural, impoverished populations who have been excluded from the rise of manufacturing and large-scale agriculture." },
+          { label: "G", text: "Nevertheless, much stands in the way of the entomophagic movement. One problem is the damage that has been caused, and continues to be caused, by Western organisations prepared to kill off grasshoppers and locusts – complete food proteins – in favour of preserving the incomplete protein crops of millet, wheat, barley and maize. Entomologist Florence Dunkel has described the consequences of such interventions. While examining children's diets as a part of her field work in Mali, Dunkel discovered that a protein deficiency syndrome called kwashiorkor was increasing in incidence. Children in the area were once protected against kwashiorkor by a diet high in grasshoppers, but these had become unsafe to eat after pesticide use in the area increased." },
+          { label: "H", text: "A further issue is the persistent fear many Westerners still have about eating insects. \"The problem is the ick factor—the eyes, the wings, the legs,\" Krisiloff has said. \"It's not as simple as hiding it in a bug nugget. People won't accept it beyond the novelty. When you think of a chicken, you think of a chicken breast, not the eyes, wings, and beak.\" For Marcel Dicke, the key lies in camouflaging the fact that people are eating insects at all. Insect flour is one of his propositions, as is changing the language of insect cuisine. \"If you say it's mealworms, it makes people think of ringworm\", he notes. \"So stop saying 'worm'. If we use Latin names, say it's a Tenebrio quiche, it sounds much more fancy\". For Krisiloff, Dicke and others, keeping quiet about the gritty reality of our food is often the best approach." },
+          { label: "I", text: "It is yet to be seen if history will truly redeem Vincent Holt and his suggestion that British families should gather around their dining tables for a breakfast of \"moths on toast\". It is clear, however, that entomophagy, far from being a kooky sideshow to the real business of food production, has much to offer in meeting the challenges that global societies in the 21st century will face." },
+        ],
+        questions: [
+          {
+            type: "heading-match",
+            instructions: "Reading Passage 2 has nine paragraphs, A–I. Choose the correct heading for paragraphs A–H from the list of headings below. Write the correct number, i–xi.",
+            options: [
+              { key: "i", text: "A historical delicacy" },
+              { key: "ii", text: "The poor may benefit" },
+              { key: "iii", text: "Presentation is key to changing attitudes" },
+              { key: "iv", text: "Environmentally friendly production" },
+              { key: "v", text: "Tradition meets technology" },
+              { key: "vi", text: "A cultural pioneer" },
+              { key: "vii", text: "Western practices harm locals" },
+              { key: "viii", text: "Good source of nutrients" },
+              { key: "ix", text: "Growing popularity" },
+              { key: "x", text: "A healthy choice" },
+              { key: "xi", text: "A safety risk" },
+            ],
+            items: [
+              { num: 14, prompt: "Section A", accepted: ["vi"] },
+              { num: 15, prompt: "Section B", accepted: ["ix"] },
+              { num: 16, prompt: "Section C", accepted: ["v"] },
+              { num: 17, prompt: "Section D", accepted: ["iv"] },
+              { num: 18, prompt: "Section E", accepted: ["x"] },
+              { num: 19, prompt: "Section F", accepted: ["ii"] },
+              { num: 20, prompt: "Section G", accepted: ["vii"] },
+              { num: 21, prompt: "Section H", accepted: ["iii"] },
+            ],
+          },
+          {
+            type: "notes-completion",
+            instructions: "Complete the notes below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+            groups: [
+              {
+                heading: "Van Huis",
+                lines: [
+                  { text: "Insects are cleaner & do not release as many harmful gases" },
+                  { text: "Insects use food intake economically in the production of protein as they waste less __BLANK__", num: 22, accepted: ["energy"] },
+                ],
+              },
+              {
+                heading: "Durst",
+                lines: [
+                  { text: "Traditional knowledge could be combined with modern methods for mass production instead of just covering __BLANK__", num: 23, accepted: ["subsistence needs"] },
+                  { text: "This could help __BLANK__ people gain access to world markets.", num: 24, accepted: ["rural, impoverished", "rural/impoverished", "rural impoverished"] },
+                ],
+              },
+              {
+                heading: "Dunkel",
+                lines: [
+                  { text: "Due to increased __BLANK__, more children in Mali are suffering from", num: 25, accepted: ["pesticide use"] },
+                  { text: "__BLANK__", num: 26, accepted: ["protein deficiency", "protein deficiency syndrome", "kwashiorkor", "protein deficiency (syndrome)", "protein deficiency syndrome/kwashiorkor"] },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Reading Passage 3",
+        heading: "Love stories",
+        paragraphs: [
+          { label: "", text: "\"Love stories\" are often associated – at least in the popular imagination – with fairy tales, adolescent day dreams, Disney movies and other frivolous pastimes. For psychologists developing taxonomies of affection and attachment, however, this is an area of rigorous academic pursuit. Beginning in the early 1970s with the groundbreaking contributions of John Alan Lee, researchers have developed classifications that they believe better characterise our romantic predispositions. This involves examining not a single, universal, emotional expression (\"love\"), but rather a series of divergent behaviours and narratives that each has an individualised purpose, desired outcome and state of mind. Lee's gritty methodology painstakingly involved participants matching 170 typical romantic encounters (e.g., \"The night after I met X…\") with nearly 1500 possible reactions (\"I could hardly get to sleep\" or \"I wrote X a letter\"). The patterns unknowingly expressed by respondents culminated in a taxonomy of six distinct love \"styles\" that continue to inform research in the area forty years later." },
+          { label: "", text: "The first of these styles – eros – is closely tied in with images of romantic love that are promulgated in Western popular culture. Characteristic of this style is a passionate emotional intensity, a strong physical magnetism – as if the two partners were literally being \"pulled\" together – and a sense of inevitability about the relationship. A related but more frantic style of love called mania involves an obsessive, compulsive attitude toward one's partner. Vast swings in mood from ecstasy to agony – dependent on the level of attention a person is receiving from his or her partner – are typical of manic love." },
+          { label: "", text: "Two styles were much more subdued, however. Storge is a quiet, companionate type of loving – \"love by evolution\" rather than \"love by revolution\", according to some theorists. Relationships built on a foundation of platonic affection and caring are archetypal of storge. When care is extended to a sacrificial level of doting, however, it becomes another style – agape. In an agape relationship one partner becomes a \"caretaker\", exalting the welfare of the other above his or her own needs." },
+          { label: "", text: "The final two styles of love seem to lack aspects of emotion and reciprocity altogether. The ludus style envisions relationships primarily as a game in which it is best to \"play the field\" or experience a diverse set of partners over time. Mutually-gratifying outcomes in relationships are not considered necessary, and deception of a partner and lack of disclosure about one's activities are also typical. While Lee found that college students in his study overwhelmingly disagreed with the tenets of this style, substantial numbers of them acted in a typically ludic style while dating, a finding that proves correct the deceit inherent in ludus. Pragma lovers also downplayed emotive aspects of relationships but favoured practical, sensible connections. Successful arranged marriages are a great example of pragma, in that the couple decide to make the relationship work; but anyone who seeks an ideal partner with a shopping list of necessary attributes (high salary, same religion, etc.) fits the classification." },
+          { label: "", text: "Robert J. Sternberg's contemporary research on love stories has elaborated on how these narratives determine the shape of our relationships and our lives. Sternberg and others have proposed and tested the theory of love as a story, \"whereby the interaction of our personal attributes with the environment – which we in part create – leads to the development of stories about love that we then seek to fulfil, to the extent possible, in our lives.\" Sternberg's taxonomy of love stories numbers far more, at twenty-six, than Lee's taxonomy of love styles, but as Sternberg himself admits there is plenty of overlap. The seventh story, Game, coincides with ludus, for example, while the nineteenth story, Sacrifice, fits neatly on top of agape." },
+          { label: "", text: "Sternberg's research demonstrates that we may have predilections toward multiple love stories, each represented in a mental hierarchy and varying in weight in terms of their personal significance. This explains the frustration many of us experience when comparing potential partners. One person often fulfils some expected narratives - such as a need for mystery and fantasy – while lacking the ability to meet the demands of others (which may lie in direct contradiction). It is also the case that stories have varying abilities to adapt to a given cultural milieu and its respective demands. Love stories are, therefore, interactive and adaptive phenomena in our lives rather than rigid prescriptions." },
+          { label: "", text: "Steinberg also explores how our love stories interact with the love stories of our partners. What happens when someone who sees love as art collides with someone who sees love as business? Can a Sewing story (love is what you make it) co-exist with a Theatre story (love is a script with predictable acts, scenes and lines)? Certainly, it is clear that we look for partners with love stories that complement and are compatible with our own narratives. But they do not have to be an identical match. Someone who sees love as mystery and art, for example, might locate that better in a partner who views love through a lens of business and humour. Not all love stories, however, are equally well predisposed to relationship longevity; stories that view love as a game, as a kind of surveillance or as an addiction are all unlikely to prove durable." },
+          { label: "", text: "Research on love stories continues apace. Defying the myth that rigorous science and the romantic persuasions of ordinary people are incompatible, this research demonstrates that good psychology can clarify and comment on the way we give affection and form attachments." },
+        ],
+        questions: [
+          {
+            type: "term-match",
+            instructions: "Look at the following statements (Questions 27–34) and the list of styles in the box below. Match each statement with the correct term, A–F. You may use any letter more than once.",
+            options: [
+              { key: "A", text: "Eros" },
+              { key: "B", text: "Mania" },
+              { key: "C", text: "Storge" },
+              { key: "D", text: "Agape" },
+              { key: "E", text: "Ludus" },
+              { key: "F", text: "Pragma" },
+            ],
+            items: [
+              { num: 27, prompt: "My most important concern is that my partner is happy.", accepted: ["D"] },
+              { num: 28, prompt: "I enjoy having many romantic partners.", accepted: ["E"] },
+              { num: 29, prompt: "I feel that my partner and I were always going to end up together.", accepted: ["A"] },
+              { num: 30, prompt: "I want to be friends first and then let romance develop later.", accepted: ["C"] },
+              { num: 31, prompt: "I always feel either very excited or absolutely miserable about my relationship.", accepted: ["B"] },
+              { num: 32, prompt: "I prefer to keep many aspects of my love life to myself.", accepted: ["E"] },
+              { num: 33, prompt: "When I am in love, that is all I can think about.", accepted: ["B"] },
+              { num: 34, prompt: "I know before I meet someone what qualities I need in a partner.", accepted: ["F"] },
+            ],
+          },
+          {
+            type: "yes-no-notgiven",
+            instructions: "Do the following statements agree with the claims of the writer in Reading Passage 3?",
+            items: [
+              { num: 35, prompt: "People's notions of love affect their relationships, rather than vice versa.", accepted: ["YES"] },
+              { num: 36, prompt: "Some of our love stories are more important to us than others.", accepted: ["YES"] },
+              { num: 37, prompt: "Our love stories can change to meet the needs of particular social environments.", accepted: ["YES"] },
+              { num: 38, prompt: "We look for romantic partners with a love story just like our own.", accepted: ["NO"] },
+              { num: 39, prompt: "The most successful partners have matching love stories.", accepted: ["NOT GIVEN"] },
+              { num: 40, prompt: "No love story is more suited to a long relationship than any other.", accepted: ["NO"] },
+            ],
+          },
+        ],
+      },
+    ],
+  }
+,
+  {
+    id: "listening-test-2",
+    kind: "listening",
+    title: "Road to IELTS — Listening Practice Test 2",
+    durationMinutes: 37.5,
+    audio: "listening-test-2.mp3",
+    transferMinutes: 10,
+    passages: [
+      {
+        title: "Section 1",
+        heading: "Questions 1–10",
+        paragraphs: [],
+        questions: [
+          {
+            type: "notes-completion",
+            instructions: "Questions 1–6. Complete the form below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer. (Application Form for use of Library Internet Service — Example: Existing cardholder? Yes)",
+            groups: [
+              { heading: "Application Form for use of Library Internet Service", lines: [
+                { text: "Family name: Milton" },
+                { text: "First names: __BLANK__ Jayne", num: 1, accepted: ["lynda"] },
+                { text: "Address: __BLANK__, 35 Maximilian Way, Whitfield", num: 2, accepted: ["unit 15", "unit fifteen"] },
+                { text: "Post Code: __BLANK__", num: 3, accepted: ["5577", "55 77", "double five double seven"] },
+                { text: "Occupation: Nurse (works the __BLANK__)", num: 4, accepted: ["night shift", "the night shift"] },
+                { text: "Home phone: N/A    Mobile: 0412 214 418" },
+                { text: "Type of ID: __BLANK__", num: 5, accepted: ["swipe card", "swipecard"] },
+                { text: "ID number: AZ 1985331" },
+                { text: "Date of Birth: 25th __BLANK__", num: 6, accepted: ["september 1975", "sept 1975", "sep 1975", "september, 1975"] },
+              ] },
+            ],
+          },
+          {
+            type: "multi-select",
+            num: "7-8",
+            pick: 2,
+            instructions: "Questions 7 and 8. Choose TWO letters, A–E. What will the woman use the internet for?",
+            options: [
+              { key: "A", text: "trade & exchange" },
+              { key: "B", text: "research" },
+              { key: "C", text: "email" },
+              { key: "D", text: "social networking" },
+              { key: "E", text: "job vacancies" },
+            ],
+            accepted: ["A", "C"],
+          },
+          {
+            type: "short-answer",
+            instructions: "Questions 9 and 10. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+            items: [
+              { num: 9, prompt: "How much does it cost to register as an internet user?", accepted: ["fifteen dollars", "$15", "15 dollars", "15", "fifteen", "15$"] },
+              { num: 10, prompt: "What is the maximum amount of time allowed per single daily internet session?", accepted: ["60 minutes", "sixty minutes", "one hour", "1 hour", "an hour", "60 mins", "60 min", "60", "sixty", "1 hr"] },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Section 2",
+        heading: "Questions 11–20",
+        paragraphs: [],
+        questions: [
+          {
+            type: "mcq",
+            instructions: "Questions 11–15. Choose the correct letter A, B or C.",
+            items: [
+              { num: 11, prompt: "The guided bushwalk is suitable for", options: [{ key: "A", text: "adults only" }, { key: "B", text: "children over 12 and adults" }, { key: "C", text: "children over 8 accompanied by a parent" }], accepted: ["B"] },
+              { num: 12, prompt: "On the bird observation outing, it is recommended that you have", options: [{ key: "A", text: "waterproof footwear" }, { key: "B", text: "a bird identification book" }, { key: "C", text: "binoculars" }], accepted: ["A"] },
+              { num: 13, prompt: "For the trip to the sand dunes, a company will donate", options: [{ key: "A", text: "water" }, { key: "B", text: "tools" }, { key: "C", text: "gloves" }], accepted: ["A"] },
+              { num: 14, prompt: "The bush tucker excursion will cost (per person)", options: [{ key: "A", text: "$15" }, { key: "B", text: "$12" }, { key: "C", text: "$7" }], accepted: ["B"] },
+              { num: 15, prompt: "The deadline to register for the bush tucker outing is", options: [{ key: "A", text: "25 November" }, { key: "B", text: "15 November" }, { key: "C", text: "10 November" }], accepted: ["C"] },
+            ],
+          },
+          {
+            type: "notes-completion",
+            instructions: "Questions 16–20. Complete the table below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+            groups: [
+              { heading: "Bush walk — Leader: Glenn Ford — Venue: Springvale", lines: [
+                { text: "Date: __BLANK__", num: 16, accepted: ["2 july", "2nd july", "july 2", "july 2nd", "second july", "the second of july", "2 jul"] },
+                { text: "Time: __BLANK__ – 1pm", num: 17, accepted: ["9.15 am", "9:15 am", "9.15am", "9:15am", "9.15", "9:15", "nine fifteen", "nine fifteen am", "9 15 am"] },
+              ] },
+              { heading: "Bird watching — Date: 10 September — Venue: Camford — Time: 4.30–6.30pm", lines: [
+                { text: "Leader: Joy Black, club __BLANK__", num: 18, accepted: ["president", "the president"] },
+              ] },
+              { heading: "Sand dunes — Leader: Rex Rose — Date: 26 November — Time: 8.30–10.30am", lines: [
+                { text: "Venue: __BLANK__", num: 19, accepted: ["observation hut", "the observation hut"] },
+              ] },
+              { heading: "Bush tucker — Leader: Jim Kerr, ranger — Date: 3 December — Venue: Carson Hills", lines: [
+                { text: "Time: 10am – __BLANK__", num: 20, accepted: ["2 pm", "2pm", "two pm", "2", "two", "2.00 pm", "2:00 pm", "2.00", "2:00", "two oclock", "2 oclock", "2 o'clock"] },
+              ] },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Section 3",
+        heading: "Questions 21–30",
+        paragraphs: [],
+        questions: [
+          {
+            type: "short-answer",
+            instructions: "Questions 21–25. Complete the sentences below. Write NO MORE THAN TWO WORDS for each answer.",
+            items: [
+              { num: 21, prompt: "Students must follow ________ to prevent accidents in the lab.", accepted: ["safety procedures", "directions", "safety rules", "safety directions"] },
+              { num: 22, prompt: "The students have not been using ________ while in the lab.", accepted: ["eye protection", "safety glasses", "goggles", "safety goggles"] },
+              { num: 23, prompt: "Students cannot eat or drink until ________ is finished and they have washed their hands.", accepted: ["clean-up", "clean up", "cleanup"] },
+              { num: 24, prompt: "Tessa should tie her hair back to avoid danger when she is working with a ________ or chemicals.", accepted: ["naked flame", "naked flames"] },
+              { num: 25, prompt: "Students must wear long sleeves and shoes made of ________ in the lab.", accepted: ["leather"] },
+            ],
+          },
+          {
+            type: "mcq",
+            instructions: "Questions 26–28. Choose the correct letter A, B or C.",
+            items: [
+              { num: 26, prompt: "Which student is currently using an appropriate notebook?", options: [{ key: "A", text: "Vincent" }, { key: "B", text: "Tessa" }, { key: "C", text: "Neither student" }], accepted: ["C"] },
+              { num: 27, prompt: "The tutor says that writing observations in complete sentences", options: [{ key: "A", text: "is often not a good use of time" }, { key: "B", text: "makes them easier to interpret later" }, { key: "C", text: "means that others can understand them" }], accepted: ["B"] },
+              { num: 28, prompt: "The students must write dates", options: [{ key: "A", text: "next to each drawing" }, { key: "B", text: "next to each written section" }, { key: "C", text: "next to each drawing and written section" }], accepted: ["C"] },
+            ],
+          },
+          {
+            type: "multi-select",
+            num: "29-30",
+            pick: 2,
+            instructions: "Questions 29 and 30. Choose TWO letters, A–E. Which TWO things must be included in the conclusion to the experiment?",
+            options: [
+              { key: "A", text: "the questions investigated" },
+              { key: "B", text: "the solutions to the questions" },
+              { key: "C", text: "the student’s own thoughts about the experiment" },
+              { key: "D", text: "the length of time spent on the experiment" },
+              { key: "E", text: "the student’s signature" },
+            ],
+            accepted: ["C", "E"],
+          },
+        ],
+      },
+      {
+        title: "Section 4",
+        heading: "Questions 31–40",
+        paragraphs: [],
+        questions: [
+          {
+            type: "notes-completion",
+            instructions: "Questions 31–40. Complete the notes below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer. (Climate change)",
+            groups: [
+              { heading: "HUMAN FACTORS", lines: [
+                { text: "Cutting down trees for __BLANK__", num: 31, accepted: ["fuel"] },
+                { text: "Industrial Revolution" },
+                { text: "__BLANK__", num: 32, accepted: ["combustion engine"] },
+                { text: "Increase in population → deforestation" },
+              ] },
+              { heading: "KNOWN EFFECTS", lines: [
+                { text: "Over previous 130 yrs: temp. ↗ by 0.6 °C" },
+                { text: "Since Ind. Rev.: CO₂ ↗ by 30% & Methane ↗ by __BLANK__ (from mining, animals, rice paddies)", num: 33, accepted: ["145%", "145 per cent", "145 percent"] },
+                { text: "N₂O ↗ (from __BLANK__ esp. fertiliser; waste management; car exhausts)", num: 34, accepted: ["agriculture"] },
+                { text: "Greenhouse Effect: gases form __BLANK__ → heat trapped → Earth warms up", num: 35, accepted: ["barrier", "a barrier"] },
+              ] },
+              { heading: "FUTURE EFFECTS", lines: [
+                { text: "1. Rise in sea levels ← ice melting. Table (sea level → number of people at risk):" },
+                { text: "1998 levels: __BLANK__", num: 36, accepted: ["46 million"] },
+                { text: "+50 cm: 92 million" },
+                { text: "+1 metre: __BLANK__", num: 37, accepted: ["118 million"] },
+                { text: "2. Change in __BLANK__ → more arid areas → population movement to cities", num: 38, accepted: ["vegetation zones"] },
+                { text: "3. Increase in pests and __BLANK__ e.g. malaria", num: 39, accepted: ["disease", "diseases"] },
+                { text: "4. Change in ecosystems: shift in __BLANK__ – some die, others multiply; deserts get hotter & bigger", num: 40, accepted: ["species composition"] },
+              ] },
+            ],
+          },
+        ],
+      },
+    ],
+  }
+];
+
+</script>
+<script>
+(function(){
+  "use strict";
+
+  // ---------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------
+  var state = {
+    user: null,          // { id, name, isLocal }
+    db: null,            // claude.use('db') namespace, or null
+    currentTest: null,
+    answers: {},          // { qnum: value }
+    activePassageIdx: 0,
+    timerRemaining: 0,
+    timerHandle: null,
+    examStartedAt: null,
+    flatQuestions: [],    // list of {num, ...} across whole test, in order, for nav grid
+  };
+
+  var LOCAL_KEY_USER = "ielts_reading_app_user_v1";
+
+  // Results are sent to this Google Apps Script web app, which writes them
+  // into the teacher's Google Sheet. This is independent of Claude
+  // organization membership — the earlier `db`-only approach silently
+  // failed to save results for students outside the teacher's Claude
+  // organization (they could only reach "view" level and their writes to
+  // the shared db were rejected), which is why scores weren't showing up
+  // on the teacher dashboard.
+  var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbylNHl1Dx2WJ9qXOiNJY3tF1MiZ8zSZXqXWpqrx6pSbs5Ir0Z6emgd0PN2RxSWvjm15rw/exec";
+  var SHEET_SECRET = "co-tan-ielts";
+
+  // ---------------------------------------------------------------
+  // Utilities
+  // ---------------------------------------------------------------
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function el(tag, attrs, children) {
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) {
+      if (k === "class") e.className = attrs[k];
+      else if (k === "html") e.innerHTML = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (children || []).forEach(function(c) {
+      if (c == null) return;
+      if (typeof c === "string") e.appendChild(document.createTextNode(c));
+      else e.appendChild(c);
+    });
+    return e;
+  }
+  function normalize(str) {
+    return String(str || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .replace(/[.’']/g, ""); // drop trailing periods / apostrophes for gentle leniency
+  }
+  // window.confirm()/alert() are unreliable inside the artifact's sandboxed
+  // frame (calls can be silently suppressed), so use an in-page modal instead.
+  function showConfirm(message, onYes) {
+    var modal = $("#confirm-modal");
+    $("#confirm-message").textContent = message;
+    modal.hidden = false;
+    var okBtn = $("#confirm-ok-btn");
+    var cancelBtn = $("#confirm-cancel-btn");
+    function cleanup() {
+      modal.hidden = true;
+      okBtn.removeEventListener("click", onOk);
+      cancelBtn.removeEventListener("click", onCancel);
+    }
+    function onOk() { cleanup(); onYes(); }
+    function onCancel() { cleanup(); }
+    okBtn.addEventListener("click", onOk);
+    cancelBtn.addEventListener("click", onCancel);
+  }
+
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+  function fmtTime(sec) {
+    sec = Math.max(0, sec);
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return pad2(m) + ":" + pad2(s);
+  }
+  function fmtDate(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+    } catch (e) { return iso; }
+  }
+  function bandFromScore(score, test) {
+    // Standard-ish IELTS raw-score-to-band conversion tables (Reading vs Listening).
+    var table = (test && test.kind === "listening") ? [
+      [39, 9], [37, 8.5], [35, 8], [32, 7.5], [30, 7], [26, 6.5],
+      [23, 6], [18, 5.5], [16, 5], [13, 4.5], [10, 4], [8, 3.5], [6, 3]
+    ] : [
+      [39, 9], [37, 8.5], [35, 8], [33, 7.5], [30, 7], [27, 6.5],
+      [23, 6], [19, 5.5], [15, 5], [13, 4.5], [10, 4], [8, 3.5], [6, 3]
+    ];
+    for (var i = 0; i < table.length; i++) {
+      if (score >= table[i][0]) return table[i][1];
+    }
+    return score > 0 ? 2.5 : 0;
+  }
+
+  // ---------------------------------------------------------------
+  // Identity: prefer platform `user` capability; fall back to a
+  // simple locally-entered display name stored in localStorage so
+  // the app works even when the capability isn't granted to a
+  // given viewer (e.g. public link visitors).
+  // ---------------------------------------------------------------
+  function initIdentity() {
+    return getCapability("user").then(function(userCap) {
+      if (userCap) {
+        return userCap.me().then(function(me) {
+          if (me && me.id) {
+            return { id: me.id, name: me.name || "", viaPlatform: true };
+          }
+          return null;
+        });
+      }
+      return null;
+    }).catch(function() { return null; });
+  }
+
+  function getCapability(name) {
+    try {
+      if (window.claude && typeof window.claude.use === "function") {
+        return window.claude.use(name);
+      }
+    } catch (e) {}
+    return Promise.resolve(null);
+  }
+
+  function localFallbackUser() {
+    try {
+      var raw = localStorage.getItem(LOCAL_KEY_USER);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+  function saveLocalFallbackUser(u) {
+    try { localStorage.setItem(LOCAL_KEY_USER, JSON.stringify(u)); } catch (e) {}
+  }
+  function clearLocalFallbackUser() {
+    try { localStorage.removeItem(LOCAL_KEY_USER); } catch (e) {}
+  }
+
+  // ---------------------------------------------------------------
+  // Boot
+  // ---------------------------------------------------------------
+  function boot() {
+    wireStaticEvents();
+    wireTeacherEvents();
+
+    if (isTeacherRoute()) {
+      // Teacher route needs `db` but not a student identity.
+      getCapability("db").then(function(db) {
+        state.db = db;
+        enterTeacherView();
+      }).catch(function() { enterTeacherView(); });
+      return;
+    }
+
+    Promise.all([initIdentity(), getCapability("db")]).then(function(res) {
+      var platformUser = res[0];
+      state.db = res[1];
+
+      if (platformUser) {
+        state.user = { id: platformUser.id, name: platformUser.name, source: "platform" };
+        enterDashboard();
+        return;
+      }
+      // Fall back to a locally-remembered display name (per-browser).
+      var local = localFallbackUser();
+      if (local && local.name) {
+        state.user = { id: "local:" + local.id, name: local.name, source: "local" };
+        enterDashboard();
+        return;
+      }
+      showAuth();
+    }).catch(function() {
+      showAuth();
+    });
+  }
+
+  function showAuth() {
+    $("#view-auth").hidden = false;
+    $("#view-dashboard").hidden = true;
+    var note = $("#auth-note");
+    if (state.db === null) {
+      note.textContent = "Lưu ý: kết quả sẽ được lưu trên trình duyệt này.";
+    } else {
+      note.textContent = "";
+    }
+  }
+
+  function enterDashboard() {
+    $("#view-auth").hidden = true;
+    $("#view-dashboard").hidden = false;
+    $("#view-exam").style.display = "none";
+    $("#view-results").style.display = "none";
+    $("#view-teacher").style.display = "none";
+
+    $("#dash-username").textContent = state.user.name || "Học sinh";
+    $("#dash-avatar").src = avatarFor(state.user);
+
+    renderTestGrid();
+    migrateOldAttemptsIfNeeded()
+      .then(syncPendingAttempts)
+      .then(renderHistory)
+      .catch(renderHistory);
+  }
+
+  // One-time migration: an earlier version of this app saved attempts under
+  // each viewer's private data/users/<id>/attempts subtree, which the
+  // teacher dashboard (added later) cannot read. Copy any such records into
+  // the shared "attempts" collection the teacher view reads, then remove
+  // the old copies so this doesn't run again / doesn't duplicate rows.
+  var MIGRATION_FLAG_KEY = "ielts_reading_migrated_v1";
+  function migrateOldAttemptsIfNeeded() {
+    if (!state.db || !state.user || state.user.source !== "platform") return Promise.resolve();
+    try { if (localStorage.getItem(MIGRATION_FLAG_KEY) === "1") return Promise.resolve(); } catch (e) {}
+
+    var uid = state.user.id;
+    return state.db.collection("data/users/" + uid + "/attempts").get().then(function(snap) {
+      if (!snap.docs.length) {
+        try { localStorage.setItem(MIGRATION_FLAG_KEY, "1"); } catch (e) {}
+        return;
+      }
+      var copies = snap.docs.map(function(d) {
+        var data = d.data();
+        data.studentId = uid;
+        data.studentName = state.user.name || data.studentName || "Học sinh";
+        return state.db.collection("attempts").add(data);
+      });
+      return Promise.all(copies).then(function() {
+        var deletes = snap.docs.map(function(d) {
+          return state.db.doc("data/users/" + uid + "/attempts/" + d.id).delete();
+        });
+        return Promise.all(deletes);
+      }).then(function() {
+        try { localStorage.setItem(MIGRATION_FLAG_KEY, "1"); } catch (e) {}
+      });
+    }).catch(function() {
+      // Non-fatal: if migration fails (e.g. old rule/permission issue),
+      // just proceed with whatever is already in the shared collection.
+    });
+  }
+
+  function avatarFor(user) {
+    // Simple deterministic initials avatar as a data: URI (works with or
+    // without the platform capability).
+    var initials = (user.name || "?").trim().slice(0, 2).toUpperCase() || "?";
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52">' +
+      '<rect width="100%" height="100%" rx="26" fill="#9b5a3c"/>' +
+      '<text x="50%" y="54%" font-family="Inter, sans-serif" font-size="20" fill="#fff" text-anchor="middle" dominant-baseline="middle">' + initials + '</text>' +
+      '</svg>';
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  function wireStaticEvents() {
+    $("#login-btn").addEventListener("click", handleLogin);
+    $("#name-input").addEventListener("keydown", function(e) { if (e.key === "Enter") handleLogin(); });
+    $("#switch-user-btn").addEventListener("click", function() {
+      clearLocalFallbackUser();
+      state.user = null;
+      $("#name-input").value = "";
+      showAuth();
+    });
+    $("#submit-btn").addEventListener("click", confirmSubmit);
+    $("#submit-btn-2").addEventListener("click", confirmSubmit);
+    $("#exit-btn").addEventListener("click", function() {
+      showConfirm("Thoát mà không lưu kết quả?", function() {
+        stopTimer();
+        stopAudio();
+        enterDashboard();
+      });
+    });
+    $("#back-to-dashboard-btn").addEventListener("click", enterDashboard);
+    $("#copy-code-btn").addEventListener("click", copyResultCode);
+    $("#result-code").addEventListener("focus", function() { this.select(); });
+    $("#retry-btn").addEventListener("click", function() {
+      startExam(state.currentTest);
+    });
+  }
+
+  function handleLogin() {
+    var name = $("#name-input").value.trim();
+    if (!name) { $("#name-input").focus(); return; }
+    if (state.user && state.user.source === "platform") {
+      // Shouldn't normally happen, but keep platform identity if present.
+      enterDashboard();
+      return;
+    }
+    var localId = "u" + Math.random().toString(36).slice(2, 10);
+    var record = { id: localId, name: name };
+    saveLocalFallbackUser(record);
+    state.user = { id: "local:" + localId, name: name, source: "local" };
+    enterDashboard();
+  }
+
+  // ---------------------------------------------------------------
+  // Dashboard
+  // ---------------------------------------------------------------
+  function totalQuestionsIn(test) {
+    var n = 0;
+    test.passages.forEach(function(p) {
+      p.questions.forEach(function(q) { n += countQuestionUnits(q); });
+    });
+    return n;
+  }
+  function countQuestionUnits(q) {
+    if (q.items) return q.items.length;
+    if (q.groups) {
+      var n = 0;
+      q.groups.forEach(function(g) { g.lines.forEach(function(l) { if (l.num) n++; }); });
+      return n;
+    }
+    if (q.pick) return 2; // multi-select counts as 2 numbered questions
+    return 0;
+  }
+
+  function renderTestGrid() {
+    var grid = $("#test-grid");
+    grid.innerHTML = "";
+    TESTS.forEach(function(test) {
+      var qcount = totalQuestionsIn(test);
+      var card = el("div", { class: "card test-card" }, [
+        el("h3", {}, [test.title]),
+        el("div", { class: "test-meta" }, [test.kind === "listening"
+          ? qcount + " câu hỏi · khoảng " + Math.round(test.durationMinutes) + " phút (nghe 1 lần) · " + test.passages.length + " phần nghe"
+          : qcount + " câu hỏi · " + test.durationMinutes + " phút · " + test.passages.length + " bài đọc"]),
+        el("button", { class: "btn btn-primary" }, ["Bắt đầu làm bài"]),
+      ]);
+      card.querySelector("button").addEventListener("click", function() { startExam(test); });
+      grid.appendChild(card);
+    });
+  }
+
+  function renderHistory() {
+    var body = $("#history-body");
+    body.innerHTML = "";
+    fetchHistory().then(function(rows) {
+      if (!rows.length) {
+        $("#history-empty").hidden = false;
+        $("#history-table").hidden = true;
+        return;
+      }
+      $("#history-empty").hidden = true;
+      $("#history-table").hidden = false;
+      rows.sort(function(a, b) { return (b.submittedAt || "").localeCompare(a.submittedAt || ""); });
+      rows.forEach(function(r) {
+        var tr = el("tr", {}, [
+          el("td", {}, [r.testTitle || r.testId]),
+          el("td", {}, [r.score + "/" + r.total]),
+          el("td", {}, [el("span", { class: "band-pill" }, ["Band " + r.band])]),
+          el("td", {}, [fmtDate(r.submittedAt)]),
+        ]);
+        body.appendChild(tr);
+      });
+    });
+  }
+
+  // The Google Sheet (via Apps Script) is the source of truth for the
+  // TEACHER's view across all students, but it's write-only from this
+  // app's side (no read-back endpoint), so a student's own "my history"
+  // list is served from localStorage on their own device/browser — every
+  // successful submission is recorded there in addition to being sent to
+  // the Sheet (see submitExam). `db` is checked first as a bonus for
+  // students who share the teacher's Claude organization.
+  function fetchHistory() {
+    if (state.db && state.user && state.user.source === "platform") {
+      var uid = state.user.id;
+      return state.db.collection("attempts").where("studentId", "==", uid).orderBy("submittedAt", "desc").limit(50).get()
+        .then(function(snap) {
+          var rows = snap.docs.map(function(d) { return d.data(); });
+          return rows.length ? rows : localHistory();
+        })
+        .catch(function() { return localHistory(); });
+    }
+    return Promise.resolve(localHistory());
+  }
+
+  function fetchAllAttempts() {
+    if (!state.db) return Promise.resolve([]);
+    return state.db.collection("attempts").orderBy("submittedAt", "desc").limit(500).get()
+      .then(function(snap) { return snap.docs.map(function(d) { return d.data(); }); })
+      .catch(function() { return []; });
+  }
+
+  function localHistoryKey() {
+    return "ielts_reading_history_" + (state.user ? state.user.id : "anon");
+  }
+  function localHistory() {
+    try {
+      var raw = localStorage.getItem(localHistoryKey());
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveLocalHistory(record) {
+    try {
+      var list = localHistory();
+      list.push(record);
+      localStorage.setItem(localHistoryKey(), JSON.stringify(list.slice(-50)));
+    } catch (e) {}
+  }
+
+  // Send one attempt record to the teacher's Google Sheet via the Apps
+  // Script web app. This is the PRIMARY save path: it works for any
+  // student regardless of whether they have a Claude account or share the
+  // teacher's Claude organization (the `db` capability only lets same-
+  // organization viewers write shared data — students outside it were
+  // silently unable to save, which is why the teacher dashboard stayed
+  // empty).
+  //
+  // We deliberately do NOT use mode:"no-cors" here: an opaque no-cors
+  // response always resolves successfully on the client regardless of the
+  // real HTTP status, which would hide a wrong-secret rejection or a
+  // script error on the Apps Script side — exactly the kind of silent
+  // failure that caused the original bug. A normal fetch to an Apps
+  // Script /exec URL deployed with "Anyone" access returns a readable,
+  // CORS-enabled response, so we parse the JSON body and check `ok`.
+  // Content-Type is left as text/plain to avoid a CORS preflight (which
+  // Apps Script's doPost does not handle) — Apps Script still parses the
+  // body as JSON on its side via JSON.parse(e.postData.contents).
+  function sendToSheet(record) {
+    if (!SHEET_ENDPOINT) return Promise.reject(new Error("no_sheet_endpoint"));
+    var payload = {
+      secret: SHEET_SECRET,
+      studentName: record.studentName,
+      testTitle: record.testTitle,
+      testId: record.testId,
+      score: record.score,
+      total: record.total,
+      band: record.band,
+      submittedAt: record.submittedAt,
+      auto: record.auto,
+    };
+    return fetch(SHEET_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+    }).then(function(resp) {
+      return resp.text().then(function(text) {
+        var data;
+        try { data = JSON.parse(text); } catch (e) { data = null; }
+        if (!resp.ok || !data || data.ok !== true) {
+          throw new Error("sheet_rejected: " + (data && data.error ? data.error : ("http_" + resp.status)));
+        }
+        return data;
+      });
+    });
+  }
+
+  function recordAttempt(record) {
+    // state.user.id already carries a "local:" prefix for non-platform
+    // users (see handleLogin / boot), so use it as-is rather than
+    // prefixing again.
+    var uid = state.user ? state.user.id : "anon";
+    record.studentId = uid;
+    record.studentName = (state.user && state.user.name) || "Học sinh";
+
+    // Always keep a local copy so "my history" on this device/browser is
+    // complete regardless of whether the Sheet accepted it. A record that
+    // synced successfully is stored WITHOUT _pendingSync; one that failed
+    // is flagged so syncPendingAttempts() retries it later.
+    var sheetPromise = sendToSheet(record).then(function() {
+      saveLocalHistory(record);
+      return { synced: true };
+    }).catch(function(err) {
+      record._pendingSync = true;
+      saveLocalHistory(record);
+      return { synced: false, error: err };
+    });
+
+    // Best-effort secondary copy in the shared `db`, for students who DO
+    // share the teacher's Claude organization (powers the in-app teacher
+    // view at #teacher as a bonus / fallback). Never blocks on this.
+    if (state.db && state.user) {
+      state.db.collection("attempts").add(record).catch(function() {});
+    }
+
+    return sheetPromise;
+  }
+
+  // Retry any attempts that were saved locally because sending to the
+  // Sheet failed earlier (see recordAttempt above). Runs quietly on
+  // dashboard entry; does not block rendering the student's own history.
+  function syncPendingAttempts() {
+    var list = localHistory();
+    var pending = list.filter(function(r) { return r._pendingSync; });
+    if (!pending.length) return Promise.resolve();
+
+    // Keep every record in local history either way (it's still this
+    // student's real attempt) — only clear the _pendingSync flag on the
+    // ones that successfully reach the Sheet on retry.
+    var pushes = pending.map(function(r) {
+      var clean = {};
+      for (var k in r) if (k !== "_pendingSync") clean[k] = r[k];
+      return sendToSheet(clean).then(function() {
+        r._pendingSync = false;
+      }).catch(function() {
+        // still pending; leave the flag as-is
+      });
+    });
+    return Promise.all(pushes).then(function() {
+      try {
+        var remaining = list.map(function(r) {
+          if (r._pendingSync === false) { var copy = {}; for (var k in r) if (k !== "_pendingSync") copy[k] = r[k]; return copy; }
+          return r;
+        });
+        localStorage.setItem(localHistoryKey(), JSON.stringify(remaining.slice(-50)));
+      } catch (e) {}
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // Exam
+  // ---------------------------------------------------------------
+  function startExam(test) {
+    state.currentTest = test;
+    state.answers = {};
+    state.activePassageIdx = 0;
+    state.examStartedAt = new Date().toISOString();
+    state.flatQuestions = flattenQuestions(test);
+
+    $("#view-dashboard").hidden = true;
+    $("#view-results").style.display = "none";
+    $("#view-exam").style.display = "block";
+
+    $("#exam-title").textContent = test.title;
+    var isL = test.kind === "listening";
+    $(".exam-body").classList.toggle("listening", isL);
+    renderPassageTabs();
+    renderPassage(0);
+    renderQuestionPane(0);
+    renderNavGrid();
+
+    state.timerRemaining = Math.round(test.durationMinutes * 60);
+    if (isL) {
+      setupListening(test);
+      updateTimerDisplay();
+    } else {
+      startTimer();
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Listening: audio plays ONCE, no pause / seek (IELTS style).
+  // The countdown starts together with the audio.
+  // ---------------------------------------------------------------
+  var audioState = { el: null, started: false, ended: false, stopped: false };
+  function stopAudio() {
+    audioState.stopped = true;
+    if (audioState.el) { try { audioState.el.pause(); } catch (e) {} }
+  }
+  function setupListening(test) {
+    stopAudio();
+    audioState = { el: null, started: false, ended: false, stopped: false };
+    var pane = $("#passage-pane");
+    pane.innerHTML = "";
+    pane.scrollTop = 0;
+    var wrap = el("div", { class: "audio-panel" });
+    wrap.appendChild(el("h3", {}, ["Phần nghe"]));
+    wrap.appendChild(el("p", {}, ["Audio chỉ phát MỘT lần, không tạm dừng, không tua lại — giống thi thật. Hãy đeo tai nghe, kiểm tra âm lượng, đọc lướt câu hỏi rồi bấm \"Bắt đầu nghe\". Đồng hồ chạy cùng audio; hết audio còn " + test.transferMinutes + " phút để rà soát và nộp bài. Bài tự nộp khi hết giờ."]));
+    var startBtn = el("button", { class: "btn btn-primary", id: "audio-start" }, ["▶ Bắt đầu nghe"]);
+    var bar = el("div", { class: "audio-bar", hidden: "" }, [el("div", { id: "audio-fill" })]);
+    var time = el("div", { class: "audio-time", id: "audio-time", hidden: "" }, [el("span", { id: "audio-cur" }, ["0:00"]), el("span", { id: "audio-tot" }, ["--:--"])]);
+    var status = el("div", { class: "audio-status", id: "audio-status" }, []);
+    wrap.appendChild(startBtn);
+    wrap.appendChild(bar);
+    wrap.appendChild(time);
+    wrap.appendChild(status);
+    pane.appendChild(wrap);
+
+    var a = new Audio();
+    a.preload = "auto";
+    a.src = test.audio;
+    audioState.el = a;
+    function mmss(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + (t % 60 < 10 ? "0" : "") + (t % 60); }
+    a.addEventListener("loadedmetadata", function() { $("#audio-tot").textContent = mmss(a.duration); });
+    a.addEventListener("timeupdate", function() {
+      if (!a.duration) return;
+      $("#audio-fill").style.width = (a.currentTime / a.duration * 100) + "%";
+      $("#audio-cur").textContent = mmss(a.currentTime);
+    });
+    // Block pausing (e.g. media keys) and seeking.
+    a.addEventListener("pause", function() {
+      if (audioState.started && !audioState.ended && !audioState.stopped) { a.play().catch(function() {}); }
+    });
+    var lastT = 0;
+    a.addEventListener("seeking", function() {
+      if (Math.abs(a.currentTime - lastT) > 2 && !audioState.ended && !audioState.stopped) { a.currentTime = lastT; }
+    });
+    a.addEventListener("timeupdate", function() { if (!a.seeking) lastT = a.currentTime; });
+    a.addEventListener("ended", function() {
+      audioState.ended = true;
+      var st = $("#audio-status");
+      if (st) { st.className = "audio-status warn"; st.textContent = "Đã hết bài nghe. Bạn còn " + test.transferMinutes + " phút để rà soát câu trả lời rồi nộp bài."; }
+    });
+    a.addEventListener("error", function() {
+      var st = $("#audio-status");
+      if (st && !audioState.stopped) {
+        st.className = "audio-status warn";
+        st.textContent = "Không tải được file audio. Hãy kiểm tra mạng, tải lại trang rồi thử lại.";
+        startBtn.disabled = false;
+      }
+    });
+    startBtn.addEventListener("click", function() {
+      startBtn.disabled = true;
+      a.play().then(function() {
+        audioState.started = true;
+        startBtn.hidden = true;
+        bar.hidden = false; time.hidden = false;
+        var st = $("#audio-status");
+        st.className = "audio-status";
+        st.textContent = "Đang phát — hãy vừa nghe vừa điền đáp án.";
+        startTimer();
+      }).catch(function() {
+        startBtn.disabled = false;
+        var st = $("#audio-status");
+        st.className = "audio-status warn";
+        st.textContent = "Chưa phát được audio. Bấm lại \"Bắt đầu nghe\" (kiểm tra trình duyệt không chặn âm thanh).";
+      });
+    });
+  }
+
+  function flattenQuestions(test) {
+    var flat = [];
+    test.passages.forEach(function(p, pIdx) {
+      p.questions.forEach(function(q) {
+        if (q.items) {
+          q.items.forEach(function(it) { flat.push({ num: it.num, passageIdx: pIdx }); });
+        } else if (q.groups) {
+          q.groups.forEach(function(g) {
+            g.lines.forEach(function(l) { if (l.num) flat.push({ num: l.num, passageIdx: pIdx }); });
+          });
+        } else if (q.pick) {
+          var parts = String(q.num).split("-");
+          var a = parseInt(parts[0], 10), b = parseInt(parts[1], 10);
+          for (var n = a; n <= b; n++) flat.push({ num: n, passageIdx: pIdx, groupNum: q.num, isMulti: true });
+        }
+      });
+    });
+    return flat;
+  }
+
+  function renderPassageTabs() {
+    var wrap = $("#passage-tabs");
+    wrap.innerHTML = "";
+    state.currentTest.passages.forEach(function(p, idx) {
+      var btn = el("button", { class: "ptab" + (idx === state.activePassageIdx ? " active" : "") }, [p.title]);
+      btn.addEventListener("click", function() {
+        if (state.currentTest.kind === "listening") {
+          var h = $("#sec-" + idx);
+          if (h) h.scrollIntoView({ block: "start", behavior: "smooth" });
+          return;
+        }
+        state.activePassageIdx = idx;
+        renderPassageTabs();
+        renderPassage(idx);
+        renderQuestionPane(idx);
+      });
+      wrap.appendChild(btn);
+    });
+  }
+
+  function renderPassage(idx) {
+    var passage = state.currentTest.passages[idx];
+    var pane = $("#passage-pane");
+    pane.innerHTML = "";
+    pane.scrollTop = 0;
+    pane.appendChild(el("div", { class: "passage-kicker" }, [passage.title]));
+    pane.appendChild(el("h2", { class: "passage-heading" }, [passage.heading]));
+    passage.paragraphs.forEach(function(para) {
+      var p = el("p", { class: "para" });
+      if (para.label) p.appendChild(el("span", { class: "para-label" }, [para.label]));
+      p.appendChild(document.createTextNode(para.text));
+      pane.appendChild(p);
+    });
+  }
+
+  function renderAllSections() {
+    var pane = $("#question-pane");
+    pane.innerHTML = "";
+    pane.scrollTop = 0;
+    state.currentTest.passages.forEach(function(p, i) {
+      pane.appendChild(el("div", { class: "sec-header", id: "sec-" + i }, [p.title + " — " + p.heading]));
+      renderQuestionPane(i, true);
+    });
+  }
+
+  function renderQuestionPane(idx, append) {
+    if (!append && state.currentTest.kind === "listening") return renderAllSections();
+    var passage = state.currentTest.passages[idx];
+    var pane = $("#question-pane");
+    if (!append) { pane.innerHTML = ""; pane.scrollTop = 0; }
+
+    passage.questions.forEach(function(q) {
+      var group = el("div", { class: "qgroup" });
+      group.appendChild(el("div", { class: "qgroup-instructions" }, [q.instructions]));
+
+      if (q.options && q.type !== "term-match") {
+        var box = el("div", { class: "options-box" });
+        q.options.forEach(function(o) {
+          box.appendChild(el("div", { class: "opt" }, [el("b", {}, [o.key]), el("span", {}, [o.text])]));
+        });
+        group.appendChild(box);
+      }
+      if (q.type === "term-match") {
+        var box2 = el("div", { class: "options-box" });
+        q.options.forEach(function(o) {
+          box2.appendChild(el("div", { class: "opt" }, [el("b", {}, [o.key]), el("span", {}, [o.text])]));
+        });
+        group.appendChild(box2);
+      }
+
+      if (q.type === "heading-match") {
+        q.items.forEach(function(it) { group.appendChild(renderHeadingItem(it, q.options)); });
+      } else if (q.type === "short-answer") {
+        q.items.forEach(function(it) { group.appendChild(renderTextItem(it)); });
+      } else if (q.type === "mcq") {
+        q.items.forEach(function(it) { group.appendChild(renderMcqItem(it)); });
+      } else if (q.type === "term-match") {
+        q.items.forEach(function(it) { group.appendChild(renderTermMatchItem(it, q.options)); });
+      } else if (q.type === "yes-no-notgiven") {
+        q.items.forEach(function(it) { group.appendChild(renderYesNoItem(it)); });
+      } else if (q.type === "notes-completion") {
+        group.appendChild(renderNotesCompletion(q));
+      } else if (q.type === "multi-select") {
+        group.appendChild(renderMultiSelect(q));
+      }
+
+      pane.appendChild(group);
+    });
+  }
+
+  function qNumBadge(num) {
+    return el("div", { class: "qnum", id: "qnum-" + num }, [String(num)]);
+  }
+
+  function markAnswered(num) {
+    var badge = $("#qnum-" + num);
+    if (badge) badge.classList.toggle("answered", state.answers[num] != null && state.answers[num] !== "");
+    updateNavCell(num);
+  }
+
+  function renderHeadingItem(it, options) {
+    var row = el("div", { class: "qitem" });
+    row.appendChild(qNumBadge(it.num));
+    var sel = el("select");
+    sel.appendChild(el("option", { value: "" }, ["— chọn —"]));
+    options.forEach(function(o) { sel.appendChild(el("option", { value: o.key }, [o.key + ". " + o.text])); });
+    sel.value = state.answers[it.num] || "";
+    sel.addEventListener("change", function() { state.answers[it.num] = sel.value; markAnswered(it.num); });
+    var prompt = el("div", { class: "qprompt" }, [it.prompt, sel]);
+    row.appendChild(prompt);
+    markAnswered(it.num);
+    return row;
+  }
+
+  function renderTextItem(it) {
+    var row = el("div", { class: "qitem" });
+    row.appendChild(qNumBadge(it.num));
+    var input = el("input", { type: "text", placeholder: "câu trả lời" });
+    input.value = state.answers[it.num] || "";
+    input.addEventListener("input", function() { state.answers[it.num] = input.value; markAnswered(it.num); });
+    row.appendChild(el("div", { class: "qprompt" }, [it.prompt, input]));
+    markAnswered(it.num);
+    return row;
+  }
+
+  function renderMcqItem(it) {
+    var box = el("div", { class: "mcq-item" });
+    box.appendChild(el("div", { class: "mcq-q" }, [qNumBadge(it.num), el("div", {}, [it.prompt])]));
+    var opts = el("div", { class: "mcq-opts" });
+    it.options.forEach(function(o) {
+      var rb = el("input", { type: "radio", name: "mcq-" + it.num, value: o.key });
+      rb.checked = state.answers[it.num] === o.key;
+      rb.addEventListener("change", function() { state.answers[it.num] = o.key; markAnswered(it.num); });
+      opts.appendChild(el("label", {}, [rb, el("span", {}, [el("b", {}, [o.key + "  "]), o.text])]));
+    });
+    box.appendChild(opts);
+    markAnswered(it.num);
+    return box;
+  }
+
+  function renderTermMatchItem(it, options) {
+    var row = el("div", { class: "qitem" });
+    row.appendChild(qNumBadge(it.num));
+    var sel = el("select");
+    sel.appendChild(el("option", { value: "" }, ["—"]));
+    options.forEach(function(o) { sel.appendChild(el("option", { value: o.key }, [o.key + ". " + o.text])); });
+    sel.value = state.answers[it.num] || "";
+    sel.addEventListener("change", function() { state.answers[it.num] = sel.value; markAnswered(it.num); });
+    row.appendChild(el("div", { class: "qprompt" }, [it.prompt, sel]));
+    markAnswered(it.num);
+    return row;
+  }
+
+  function renderYesNoItem(it) {
+    var row = el("div", { class: "qitem" });
+    row.appendChild(qNumBadge(it.num));
+    var sel = el("select");
+    ["", "YES", "NO", "NOT GIVEN"].forEach(function(v) {
+      sel.appendChild(el("option", { value: v }, [v === "" ? "— chọn —" : v]));
+    });
+    sel.value = state.answers[it.num] || "";
+    sel.addEventListener("change", function() { state.answers[it.num] = sel.value; markAnswered(it.num); });
+    row.appendChild(el("div", { class: "qprompt" }, [it.prompt, sel]));
+    markAnswered(it.num);
+    return row;
+  }
+
+  function renderNotesCompletion(q) {
+    var wrap = el("div", { class: "notes-block" });
+    q.groups.forEach(function(g) {
+      wrap.appendChild(el("div", { class: "notes-heading" }, [g.heading]));
+      g.lines.forEach(function(line) {
+        if (!line.num) {
+          wrap.appendChild(el("div", { class: "notes-line" }, [el("span", { class: "notes-bullet" }, ["•"]), el("span", {}, [line.text])]));
+          return;
+        }
+        var parts = line.text.split("__BLANK__");
+        var lineEl = el("div", { class: "notes-line" });
+        lineEl.appendChild(el("span", { class: "notes-bullet" }, ["•"]));
+        lineEl.appendChild(qNumBadge(line.num));
+        var textSpan = el("span", {}, [parts[0]]);
+        var input = el("input", { type: "text", placeholder: "..." });
+        input.style.width = "150px";
+        input.value = state.answers[line.num] || "";
+        input.addEventListener("input", function() { state.answers[line.num] = input.value; markAnswered(line.num); });
+        var after = el("span", {}, [parts[1] || ""]);
+        lineEl.appendChild(el("span", {}, [textSpan, input, after]));
+        wrap.appendChild(lineEl);
+        markAnswered(line.num);
+      });
+    });
+    return wrap;
+  }
+
+  function renderMultiSelect(q) {
+    var wrap = el("div", { class: "multiselect-box" });
+    var parts = String(q.num).split("-");
+    var a = parseInt(parts[0], 10), b = parseInt(parts[1], 10);
+    var nums = [];
+    for (var n = a; n <= b; n++) nums.push(n);
+
+    var badgeRow = el("div", { style: "display:flex; gap:6px; margin-bottom:8px;" });
+    nums.forEach(function(n) { badgeRow.appendChild(qNumBadge(n)); });
+    wrap.appendChild(badgeRow);
+
+    var current = state.answers[q.num] || [];
+    q.options.forEach(function(o) {
+      var cb = el("input", { type: "checkbox", value: o.key });
+      cb.checked = current.indexOf(o.key) !== -1;
+      cb.addEventListener("change", function() {
+        var arr = (state.answers[q.num] || []).slice();
+        if (cb.checked) {
+          if (arr.length >= q.pick) { cb.checked = false; return; }
+          arr.push(o.key);
+        } else {
+          arr = arr.filter(function(x) { return x !== o.key; });
+        }
+        state.answers[q.num] = arr;
+        nums.forEach(function(n) {
+          var badge = $("#qnum-" + n);
+          if (badge) badge.classList.toggle("answered", arr.length === q.pick);
+          updateNavCell(n);
+        });
+      });
+      var row = el("label", { class: "ms-opt" }, [cb, el("span", {}, [o.key + ". " + o.text])]);
+      wrap.appendChild(row);
+    });
+    return wrap;
+  }
+
+  // ---------------------------------------------------------------
+  // Nav grid
+  // ---------------------------------------------------------------
+  function renderNavGrid() {
+    var grid = $("#navgrid");
+    grid.innerHTML = "";
+    state.flatQuestions.forEach(function(fq) {
+      var cell = el("button", { class: "navcell", id: "navcell-" + fq.num }, [String(fq.num)]);
+      cell.addEventListener("click", function() {
+        if (state.currentTest.kind !== "listening") {
+          state.activePassageIdx = fq.passageIdx;
+          renderPassageTabs();
+          renderPassage(fq.passageIdx);
+          renderQuestionPane(fq.passageIdx);
+        }
+        setTimeout(function() {
+          var target = $("#qnum-" + fq.num);
+          if (target) target.scrollIntoView({ block: "center", behavior: "smooth" });
+        }, 30);
+      });
+      grid.appendChild(cell);
+    });
+    state.flatQuestions.forEach(function(fq) { updateNavCell(fq.num); });
+  }
+
+  function updateNavCell(num) {
+    var cell = $("#navcell-" + num);
+    if (!cell) return;
+    var answered = state.answers[num] != null && state.answers[num] !== "" &&
+      !(Array.isArray(state.answers[num]) && state.answers[num].length === 0);
+    // for multi-select group answers stored under group num, check membership
+    var fq = state.flatQuestions.filter(function(f) { return f.num === num; })[0];
+    if (fq && fq.isMulti) {
+      var arr = state.answers[fq.groupNum] || [];
+      answered = arr.length > 0;
+    }
+    cell.classList.toggle("done", answered);
+  }
+
+  // ---------------------------------------------------------------
+  // Timer
+  // ---------------------------------------------------------------
+  function startTimer() {
+    stopTimer();
+    updateTimerDisplay();
+    state.timerHandle = setInterval(function() {
+      state.timerRemaining--;
+      updateTimerDisplay();
+      if (state.timerRemaining <= 0) {
+        stopTimer();
+        submitExam(true);
+      }
+    }, 1000);
+  }
+  function stopTimer() {
+    if (state.timerHandle) { clearInterval(state.timerHandle); state.timerHandle = null; }
+  }
+  function updateTimerDisplay() {
+    var t = $("#timer");
+    t.textContent = fmtTime(state.timerRemaining);
+    t.classList.toggle("low", state.timerRemaining <= 120);
+  }
+
+  function confirmSubmit() {
+    // Count against the same flattened, per-number question list the nav
+    // grid and grader use — NOT Object.keys(state.answers), which under-counts
+    // a multi-select group (e.g. Q12-13) because it stores one array under
+    // one combined key instead of one entry per question number.
+    var answeredCount = state.flatQuestions.filter(function(fq) {
+      if (fq.isMulti) {
+        var arr = state.answers[fq.groupNum] || [];
+        return arr.length > 0;
+      }
+      var v = state.answers[fq.num];
+      return v != null && v !== "";
+    }).length;
+    var total = state.flatQuestions.length;
+    var msg = answeredCount < total
+      ? "Bạn mới trả lời " + answeredCount + "/" + total + " câu. Nộp bài ngay?"
+      : "Nộp bài?";
+    showConfirm(msg, function() { submitExam(false); });
+  }
+
+  // ---------------------------------------------------------------
+  // Grading
+  // ---------------------------------------------------------------
+  function gradeAnswer(userVal, accepted, isMulti) {
+    if (isMulti) return null; // handled separately
+    if (userVal == null || userVal === "") return false;
+    var normUser = normalize(userVal);
+    return accepted.some(function(acc) { return normalize(acc) === normUser; });
+  }
+
+  function gradeExam() {
+    var results = []; // { num, correct, userAnswer, correctAnswers, prompt }
+    var test = state.currentTest;
+
+    test.passages.forEach(function(passage, pIdx) {
+      passage.questions.forEach(function(q) {
+        if (q.type === "heading-match" || q.type === "term-match" || q.type === "yes-no-notgiven" || q.type === "mcq") {
+          q.items.forEach(function(it) {
+            var ok = gradeAnswer(state.answers[it.num], it.accepted, false);
+            results.push({ num: it.num, correct: ok, userAnswer: state.answers[it.num] || "", correctAnswers: it.accepted, prompt: it.prompt, passageIdx: pIdx });
+          });
+        } else if (q.type === "short-answer") {
+          q.items.forEach(function(it) {
+            var ok = gradeAnswer(state.answers[it.num], it.accepted, false);
+            results.push({ num: it.num, correct: ok, userAnswer: state.answers[it.num] || "", correctAnswers: it.accepted, prompt: it.prompt, passageIdx: pIdx });
+          });
+        } else if (q.type === "notes-completion") {
+          q.groups.forEach(function(g) {
+            g.lines.forEach(function(l) {
+              if (!l.num) return;
+              var ok = gradeAnswer(state.answers[l.num], l.accepted, false);
+              results.push({ num: l.num, correct: ok, userAnswer: state.answers[l.num] || "", correctAnswers: l.accepted, prompt: l.text.replace("__BLANK__", "____"), passageIdx: pIdx });
+            });
+          });
+        } else if (q.type === "multi-select") {
+          var parts = String(q.num).split("-");
+          var a = parseInt(parts[0], 10), b = parseInt(parts[1], 10);
+          var userArr = (state.answers[q.num] || []).slice().sort();
+          var accArr = q.accepted.slice().sort();
+          var setMatch = userArr.length === accArr.length && userArr.every(function(v, i) { return v === accArr[i]; });
+          for (var n = a; n <= b; n++) {
+            results.push({
+              num: n, correct: setMatch,
+              userAnswer: userArr.join(", ") || "(chưa chọn)",
+              correctAnswers: [q.accepted.join(" hoặc ")],
+              prompt: "Chọn 2 đáp án đúng (câu " + q.num + ")",
+              passageIdx: pIdx, isMultiRow: true,
+            });
+          }
+        }
+      });
+    });
+
+    results.sort(function(a, b) { return a.num - b.num; });
+    var score = results.reduce(function(s, r) { return s + (r.correct ? 1 : 0); }, 0);
+    return { results: results, score: score, total: results.length };
+  }
+
+  function submitExam(auto) {
+    stopTimer();
+    stopAudio();
+    var graded = gradeExam();
+    var band = bandFromScore(graded.score, state.currentTest);
+    var record = {
+      testId: state.currentTest.id,
+      testTitle: state.currentTest.title,
+      score: graded.score,
+      total: graded.total,
+      band: band,
+      submittedAt: new Date().toISOString(),
+      startedAt: state.examStartedAt,
+      auto: !!auto,
+    };
+    // Show results immediately (never block the student on the network),
+    // then report honestly whether the result reached the teacher's Sheet.
+    renderResults(graded, band, auto, record);
+    setSendStatus("pending");
+    recordAttempt(record).then(function(res) {
+      setSendStatus(res && res.synced ? "ok" : "fail");
+    }).catch(function() { setSendStatus("fail"); });
+  }
+
+  function setSendStatus(kind) {
+    var s = $("#send-status");
+    s.className = "send-status " + (kind === "ok" ? "ok" : kind === "fail" ? "fail" : "");
+    if (kind === "ok") s.textContent = "✓ Đã tự động gửi kết quả cho cô.";
+    else if (kind === "fail") s.textContent = "Chưa tự động gửi được kết quả — hãy chụp màn hình hoặc gửi mã bên dưới cho cô.";
+    else s.textContent = "Đang gửi kết quả cho cô...";
+  }
+
+  function buildResultCode(record) {
+    var d = new Date(record.submittedAt);
+    var when = pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + "/" + d.getFullYear() + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+    return [
+      state.currentTest.kind === "listening" ? "IELTS-LISTENING" : "IELTS-READING",
+      (state.user && state.user.name) || "Học sinh",
+      record.testTitle,
+      record.score + "/" + record.total,
+      "Band " + record.band,
+      when + (record.auto ? " (hết giờ)" : ""),
+    ].join(" | ");
+  }
+
+  function copyResultCode() {
+    var ta = $("#result-code");
+    var fb = $("#copy-feedback");
+    function done() { fb.hidden = false; setTimeout(function() { fb.hidden = true; }, 2000); }
+    ta.focus(); ta.select();
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value).then(done, function() {
+          try { if (document.execCommand("copy")) done(); } catch (e) {}
+        });
+        return;
+      }
+    } catch (e) {}
+    try { if (document.execCommand("copy")) done(); } catch (e) {}
+    // If both copy paths are blocked, the text stays selected so the
+    // student can press Ctrl/Cmd+C themselves.
+  }
+
+  function renderResults(graded, band, auto, record) {
+    $("#result-code").value = buildResultCode(record);
+    $("#view-exam").style.display = "none";
+    $("#view-results").style.display = "block";
+
+    $("#results-test-title").textContent = state.currentTest.title;
+    $("#results-sub").textContent = auto ? "Đã hết giờ — bài nộp tự động" : "Đã nộp bài";
+    $("#score-n").textContent = graded.score + "/" + graded.total;
+    $("#score-headline").textContent = graded.score >= graded.total * 0.7 ? "Làm tốt lắm!" : "Đã hoàn thành bài thi";
+    $("#score-band").textContent = band;
+    $("#score-ring").style.setProperty("--pct", Math.round((graded.score / graded.total) * 100));
+
+    var bgrid = $("#breakdown-grid");
+    bgrid.innerHTML = "";
+    state.currentTest.passages.forEach(function(p, idx) {
+      var inRange = graded.results.filter(function(r) { return r.passageIdx === idx; });
+      var correct = inRange.filter(function(r) { return r.correct; }).length;
+      bgrid.appendChild(el("div", { class: "card breakdown-tile" }, [
+        el("div", { class: "k" }, [p.title]),
+        el("div", { class: "v" }, [correct + "/" + inRange.length]),
+      ]));
+    });
+
+    var list = $("#review-list");
+    list.innerHTML = "";
+    graded.results.forEach(function(r) {
+      var item = el("div", { class: "review-item" }, [
+        el("div", { class: "review-badge " + (r.correct ? "correct" : "incorrect") }, [r.correct ? "✓" : "✕"]),
+        el("div", { class: "review-body" }, [
+          el("div", {}, [el("b", { class: "q" }, ["Câu " + r.num + "."]), r.prompt]),
+          el("div", { class: "review-answers" }, r.correct
+            ? [el("span", { class: "right" }, ["Bạn trả lời: " + (r.userAnswer || "—")])]
+            : [
+                el("span", { class: "wrong" }, ["Bạn: " + (r.userAnswer || "(bỏ trống)")]),
+                el("span", { class: "right" }, ["Đáp án đúng: " + r.correctAnswers.join(" hoặc ")]),
+              ]),
+        ]),
+      ]);
+      list.appendChild(item);
+    });
+
+    window.scrollTo(0, 0);
+  }
+
+  // ---------------------------------------------------------------
+  // Teacher view — reachable at #teacher, gated by a shared password.
+  // NOTE: this is a lightweight deterrent (the password lives in this
+  // published page's source), not real access control — anyone who can
+  // view the page's source can read it. Good enough for "only people I
+  // gave the link/password to look here", not for sensitive data.
+  // ---------------------------------------------------------------
+  var TEACHER_PASSWORD = "giaovien2026";
+  var TEACHER_SESSION_KEY = "ielts_reading_teacher_unlocked_v1";
+
+  function isTeacherRoute() {
+    return window.location.hash.replace("#", "").toLowerCase() === "teacher";
+  }
+
+  function teacherUnlocked() {
+    try { return sessionStorage.getItem(TEACHER_SESSION_KEY) === "1"; } catch (e) { return false; }
+  }
+  function setTeacherUnlocked() {
+    try { sessionStorage.setItem(TEACHER_SESSION_KEY, "1"); } catch (e) {}
+  }
+
+  function enterTeacherView() {
+    hideAllMainViews();
+    $("#view-teacher").style.display = "block";
+    if (teacherUnlocked()) {
+      showTeacherPanel();
+    } else {
+      $("#teacher-gate").style.display = "flex";
+      $("#teacher-panel").hidden = true;
+    }
+  }
+
+  function hideAllMainViews() {
+    $("#view-auth").hidden = true;
+    $("#view-dashboard").hidden = true;
+    $("#view-exam").style.display = "none";
+    $("#view-results").style.display = "none";
+    $("#view-teacher").style.display = "none";
+  }
+
+  function showTeacherPanel() {
+    $("#teacher-gate").style.display = "none";
+    $("#teacher-panel").hidden = false;
+    loadTeacherData();
+  }
+
+  function loadTeacherData() {
+    fetchAllAttempts().then(function(rows) {
+      state.teacherRows = rows;
+      populateTeacherTestFilter(rows);
+      renderTeacherPanel();
+    });
+  }
+
+  function populateTeacherTestFilter(rows) {
+    var sel = $("#teacher-test-filter");
+    var current = sel.value;
+    var seen = {};
+    var titles = [];
+    rows.forEach(function(r) {
+      var key = r.testTitle || r.testId || "?";
+      if (!seen[key]) { seen[key] = true; titles.push(key); }
+    });
+    sel.innerHTML = "";
+    sel.appendChild(el("option", { value: "" }, ["Tất cả đề thi"]));
+    titles.forEach(function(t) { sel.appendChild(el("option", { value: t }, [t])); });
+    sel.value = titles.indexOf(current) !== -1 ? current : "";
+  }
+
+  function renderTeacherPanel() {
+    var rows = (state.teacherRows || []).slice();
+    var q = normalize($("#teacher-search").value || "");
+    var testFilter = $("#teacher-test-filter").value;
+
+    if (q) rows = rows.filter(function(r) { return normalize(r.studentName || "").indexOf(q) !== -1; });
+    if (testFilter) rows = rows.filter(function(r) { return (r.testTitle || r.testId) === testFilter; });
+
+    rows.sort(function(a, b) { return (b.submittedAt || "").localeCompare(a.submittedAt || ""); });
+
+    // Stats
+    var uniqueStudents = {};
+    rows.forEach(function(r) { uniqueStudents[r.studentId] = true; });
+    var avgScore = rows.length ? (rows.reduce(function(s, r) { return s + (r.score || 0); }, 0) / rows.length) : 0;
+    var statsGrid = $("#teacher-stats");
+    statsGrid.innerHTML = "";
+    [
+      ["Lượt nộp bài", rows.length],
+      ["Học sinh", Object.keys(uniqueStudents).length],
+      ["Điểm trung bình", rows.length ? avgScore.toFixed(1) + "/40" : "—"],
+    ].forEach(function(pair) {
+      statsGrid.appendChild(el("div", { class: "card breakdown-tile" }, [
+        el("div", { class: "k" }, [pair[0]]),
+        el("div", { class: "v" }, [String(pair[1])]),
+      ]));
+    });
+
+    var body = $("#teacher-table-body");
+    body.innerHTML = "";
+    if (!rows.length) {
+      $("#teacher-empty").hidden = false;
+      $("#teacher-table").hidden = true;
+      return;
+    }
+    $("#teacher-empty").hidden = true;
+    $("#teacher-table").hidden = false;
+    rows.forEach(function(r) {
+      body.appendChild(el("tr", {}, [
+        el("td", {}, [r.studentName || "(không rõ)"]),
+        el("td", {}, [r.testTitle || r.testId || "-"]),
+        el("td", {}, [(r.score != null ? r.score : "-") + "/" + (r.total || 40)]),
+        el("td", {}, [el("span", { class: "band-pill" }, ["Band " + r.band])]),
+        el("td", {}, [fmtDate(r.submittedAt)]),
+        el("td", {}, [r.auto ? "Hết giờ (tự nộp)" : ""]),
+      ]));
+    });
+  }
+
+  function wireTeacherEvents() {
+    $("#teacher-pw-btn").addEventListener("click", function() {
+      var val = $("#teacher-pw-input").value;
+      if (val === TEACHER_PASSWORD) {
+        setTeacherUnlocked();
+        $("#teacher-pw-err").textContent = "";
+        showTeacherPanel();
+      } else {
+        $("#teacher-pw-err").textContent = "Mật khẩu không đúng.";
+      }
+    });
+    $("#teacher-pw-input").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") $("#teacher-pw-btn").click();
+    });
+    $("#teacher-refresh-btn").addEventListener("click", loadTeacherData);
+    $("#teacher-exit-btn").addEventListener("click", function() {
+      window.location.hash = "";
+      routeFromHash();
+    });
+    $("#teacher-search").addEventListener("input", renderTeacherPanel);
+    $("#teacher-test-filter").addEventListener("change", renderTeacherPanel);
+    window.addEventListener("hashchange", routeFromHash);
+  }
+
+  function routeFromHash() {
+    if (isTeacherRoute()) {
+      enterTeacherView();
+    } else if (state.user) {
+      enterDashboard();
+    } else {
+      hideAllMainViews();
+      showAuth();
+    }
+  }
+
+  boot();
+})();
+</script>
+
+</body>
+</html>
