@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Luyện thi IELTS</title>
+<title>IELTS Practice Test</title>
 <style>
   :root {
     --ink: #1c2530;
@@ -377,10 +377,10 @@
   <div id="view-auth">
     <div class="card auth-card">
       <div class="brand-mark" style="margin:0 auto 14px;">IR</div>
-      <h1 style="font-size:22px;">Luyện thi IELTS</h1>
-      <p>Đăng nhập bằng tên để bắt đầu làm bài và lưu lại kết quả của bạn.</p>
-      <input id="name-input" type="text" placeholder="Tên của bạn" maxlength="40" autocomplete="off">
-      <button class="btn btn-primary" id="login-btn" style="width:100%;">Vào làm bài</button>
+      <h1 style="font-size:22px;">IELTS Practice Test</h1>
+      <p>Enter your name to start the test and save your results.</p>
+      <input id="name-input" type="text" placeholder="Your name" maxlength="40" autocomplete="off">
+      <button class="btn btn-primary" id="login-btn" style="width:100%;">Start</button>
       <div class="auth-note" id="auth-note"></div>
     </div>
   </div>
@@ -391,29 +391,29 @@
       <div class="brand">
         <div class="brand-mark">IR</div>
         <div>
-          <div class="brand-name">Luyện thi IELTS</div>
-          <div class="brand-sub">Practice · Chấm điểm tự động</div>
+          <div class="brand-name">IELTS Practice Test</div>
+          <div class="brand-sub">Practice · Instant automatic marking</div>
         </div>
       </div>
       <div class="userchip">
         <img class="avatar" id="dash-avatar" src="" alt="">
         <span id="dash-username"></span>
-        <button class="btn btn-ghost btn-sm" id="switch-user-btn">Đổi tên</button>
+        <button class="btn btn-ghost btn-sm" id="switch-user-btn">Change name</button>
       </div>
     </div>
 
-    <div class="section-label">Đề thi</div>
+    <div class="section-label">Tests</div>
     <div class="test-grid" id="test-grid"></div>
 
-    <div class="section-label">Lịch sử làm bài của bạn</div>
+    <div class="section-label">Your test history</div>
     <div class="card" style="overflow-x:auto;">
       <table class="history-table" id="history-table">
         <thead>
-          <tr><th>Đề thi</th><th>Điểm</th><th>Band</th><th>Thời gian nộp</th></tr>
+          <tr><th>Test</th><th>Score</th><th>Band</th><th>Submitted</th></tr>
         </thead>
         <tbody id="history-body"></tbody>
       </table>
-      <div class="empty-hint" id="history-empty" hidden>Bạn chưa làm bài nào. Chọn một đề ở trên để bắt đầu.</div>
+      <div class="empty-hint" id="history-empty" hidden>You have not taken any test yet. Choose a test above to begin.</div>
     </div>
   </div>
 
@@ -423,10 +423,10 @@
     <div id="teacher-gate" class="teacher-gate">
       <div class="card">
         <div class="brand-mark" style="margin:0 auto 14px;">GV</div>
-        <h1 style="font-size:22px;">Trang giáo viên</h1>
-        <p>Nhập mật khẩu để xem kết quả làm bài của học sinh.</p>
-        <input id="teacher-pw-input" type="password" placeholder="Mật khẩu" autocomplete="off">
-        <button class="btn btn-primary" id="teacher-pw-btn" style="width:100%;">Vào xem</button>
+        <h1 style="font-size:22px;">Teacher page</h1>
+        <p>Enter the password to view student results.</p>
+        <input id="teacher-pw-input" type="password" placeholder="Password" autocomplete="off">
+        <button class="btn btn-primary" id="teacher-pw-btn" style="width:100%;">View</button>
         <div class="err" id="teacher-pw-err"></div>
       </div>
     </div>
@@ -437,31 +437,31 @@
         <div class="brand">
           <div class="brand-mark">GV</div>
           <div>
-            <div class="brand-name">Kết quả học sinh</div>
-            <div class="brand-sub">Toàn bộ lượt làm bài đã ghi nhận</div>
+            <div class="brand-name">Student results</div>
+            <div class="brand-sub">All recorded attempts</div>
           </div>
         </div>
         <div style="display:flex; gap:8px;">
-          <button class="btn btn-sm" id="teacher-refresh-btn">Làm mới</button>
-          <button class="btn btn-sm" id="teacher-exit-btn">Thoát</button>
+          <button class="btn btn-sm" id="teacher-refresh-btn">Refresh</button>
+          <button class="btn btn-sm" id="teacher-exit-btn">Exit</button>
         </div>
       </div>
 
       <div class="teacher-stats" id="teacher-stats"></div>
 
       <div class="teacher-filters">
-        <input id="teacher-search" type="text" placeholder="Tìm theo tên học sinh...">
-        <select id="teacher-test-filter"><option value="">Tất cả đề thi</option></select>
+        <input id="teacher-search" type="text" placeholder="Search by student name...">
+        <select id="teacher-test-filter"><option value="">All tests</option></select>
       </div>
 
       <div class="card" style="overflow-x:auto;">
         <table class="history-table" id="teacher-table">
           <thead>
-            <tr><th>Học sinh</th><th>Đề thi</th><th>Điểm</th><th>Band</th><th>Thời gian nộp</th><th>Ghi chú</th></tr>
+            <tr><th>Student</th><th>Test</th><th>Score</th><th>Band</th><th>Submitted</th><th>Note</th></tr>
           </thead>
           <tbody id="teacher-table-body"></tbody>
         </table>
-        <div class="empty-hint" id="teacher-empty" hidden>Chưa có học sinh nào nộp bài.</div>
+        <div class="empty-hint" id="teacher-empty" hidden>No student has submitted a test yet.</div>
       </div>
     </div>
   </div>
@@ -475,7 +475,7 @@
       <div class="passage-tabs" id="passage-tabs"></div>
       <div style="display:flex; align-items:center; gap:10px;">
         <div class="timer" id="timer">60:00</div>
-        <button class="btn btn-primary btn-sm" id="submit-btn">Nộp bài</button>
+        <button class="btn btn-primary btn-sm" id="submit-btn">Submit</button>
       </div>
     </div>
 
@@ -485,11 +485,11 @@
     </div>
 
     <div class="card navgrid-wrap">
-      <div class="section-label" style="margin-bottom:8px;">Điều hướng câu hỏi</div>
+      <div class="section-label" style="margin-bottom:8px;">Question navigator</div>
       <div class="navgrid" id="navgrid"></div>
       <div class="submit-row">
-        <button class="btn" id="exit-btn">Thoát (không lưu)</button>
-        <button class="btn btn-primary" id="submit-btn-2">Nộp bài</button>
+        <button class="btn" id="exit-btn">Exit (do not save)</button>
+        <button class="btn btn-primary" id="submit-btn-2">Submit</button>
       </div>
     </div>
   </div>
@@ -510,33 +510,33 @@
       <div class="score-ring" id="score-ring">
         <div class="score-ring-inner">
           <div class="n" id="score-n">0/40</div>
-          <div class="d">câu đúng</div>
+          <div class="d">correct</div>
         </div>
       </div>
       <div class="score-text">
-        <h2 id="score-headline">Kết quả của bạn</h2>
-        <div class="band">Band điểm ước tính: <b id="score-band">-</b></div>
+        <h2 id="score-headline">Your result</h2>
+        <div class="band">Estimated band score: <b id="score-band">-</b></div>
       </div>
     </div>
 
     <div class="card send-card">
-      <div class="send-status" id="send-status">Đang gửi kết quả cho cô...</div>
-      <div class="send-help">Để chắc chắn cô nhận được, hãy <b>chụp màn hình trang kết quả này</b> hoặc <b>sao chép mã bên dưới</b> gửi cho cô.</div>
+      <div class="send-status" id="send-status">Sending your result to your teacher...</div>
+      <div class="send-help">To be sure your teacher receives it, please <b>take a screenshot of this results page</b> or <b>copy the code below</b> and send it to your teacher.</div>
       <textarea id="result-code" class="result-code" rows="2" readonly></textarea>
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <button class="btn btn-sm btn-primary" id="copy-code-btn">Sao chép mã kết quả</button>
-        <span class="send-copied" id="copy-feedback" hidden>Đã sao chép</span>
+        <button class="btn btn-sm btn-primary" id="copy-code-btn">Copy result code</button>
+        <span class="send-copied" id="copy-feedback" hidden>Copied</span>
       </div>
     </div>
 
     <div class="breakdown-grid" id="breakdown-grid"></div>
 
-    <div class="section-label">Xem lại chi tiết từng câu</div>
+    <div class="section-label">Review each question</div>
     <div class="card" id="review-list" style="max-height:560px; overflow-y:auto;"></div>
 
     <div class="results-actions">
-      <button class="btn btn-primary" id="back-to-dashboard-btn">Về trang chủ</button>
-      <button class="btn" id="retry-btn">Làm lại đề này</button>
+      <button class="btn btn-primary" id="back-to-dashboard-btn">Back to home</button>
+      <button class="btn" id="retry-btn">Retake this test</button>
     </div>
   </div>
 
@@ -545,8 +545,8 @@
     <div class="modal-box">
       <p id="confirm-message"></p>
       <div class="modal-actions">
-        <button class="btn" id="confirm-cancel-btn">Hủy</button>
-        <button class="btn btn-primary" id="confirm-ok-btn">Đồng ý</button>
+        <button class="btn" id="confirm-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="confirm-ok-btn">OK</button>
       </div>
     </div>
   </div>
@@ -563,7 +563,7 @@
 const TESTS = [
   {
     id: "reading-test-2",
-    title: "Road to IELTS — Academic Reading Practice Test 2",
+    title: "Academic Reading Practice Test 2",
     durationMinutes: 60,
     passages: [
       {
@@ -757,7 +757,7 @@ const TESTS = [
   {
     id: "listening-test-2",
     kind: "listening",
-    title: "Road to IELTS — Listening Practice Test 2",
+    title: "Listening Practice Test 2",
     durationMinutes: 37.5,
     audio: "listening-test-2.mp3",
     transferMinutes: 10,
@@ -1114,7 +1114,7 @@ const TESTS = [
     $("#view-dashboard").hidden = true;
     var note = $("#auth-note");
     if (state.db === null) {
-      note.textContent = "Lưu ý: kết quả sẽ được lưu trên trình duyệt này.";
+      note.textContent = "Note: your results will be saved in this browser.";
     } else {
       note.textContent = "";
     }
@@ -1127,7 +1127,7 @@ const TESTS = [
     $("#view-results").style.display = "none";
     $("#view-teacher").style.display = "none";
 
-    $("#dash-username").textContent = state.user.name || "Học sinh";
+    $("#dash-username").textContent = state.user.name || "Student";
     $("#dash-avatar").src = avatarFor(state.user);
 
     renderTestGrid();
@@ -1156,7 +1156,7 @@ const TESTS = [
       var copies = snap.docs.map(function(d) {
         var data = d.data();
         data.studentId = uid;
-        data.studentName = state.user.name || data.studentName || "Học sinh";
+        data.studentName = state.user.name || data.studentName || "Student";
         return state.db.collection("attempts").add(data);
       });
       return Promise.all(copies).then(function() {
@@ -1196,7 +1196,7 @@ const TESTS = [
     $("#submit-btn").addEventListener("click", confirmSubmit);
     $("#submit-btn-2").addEventListener("click", confirmSubmit);
     $("#exit-btn").addEventListener("click", function() {
-      showConfirm("Thoát mà không lưu kết quả?", function() {
+      showConfirm("Exit without saving your result?", function() {
         stopTimer();
         stopAudio();
         enterDashboard();
@@ -1254,9 +1254,9 @@ const TESTS = [
       var card = el("div", { class: "card test-card" }, [
         el("h3", {}, [test.title]),
         el("div", { class: "test-meta" }, [test.kind === "listening"
-          ? qcount + " câu hỏi · khoảng " + Math.round(test.durationMinutes) + " phút (nghe 1 lần) · " + test.passages.length + " phần nghe"
-          : qcount + " câu hỏi · " + test.durationMinutes + " phút · " + test.passages.length + " bài đọc"]),
-        el("button", { class: "btn btn-primary" }, ["Bắt đầu làm bài"]),
+          ? qcount + " questions · about " + Math.round(test.durationMinutes) + " minutes (audio plays once) · " + test.passages.length + " sections"
+          : qcount + " questions · " + test.durationMinutes + " minutes · " + test.passages.length + " passages"]),
+        el("button", { class: "btn btn-primary" }, ["Start"]),
       ]);
       card.querySelector("button").addEventListener("click", function() { startExam(test); });
       grid.appendChild(card);
@@ -1384,7 +1384,7 @@ const TESTS = [
     // prefixing again.
     var uid = state.user ? state.user.id : "anon";
     record.studentId = uid;
-    record.studentName = (state.user && state.user.name) || "Học sinh";
+    record.studentName = (state.user && state.user.name) || "Student";
 
     // Always keep a local copy so "my history" on this device/browser is
     // complete regardless of whether the Sheet accepted it. A record that
@@ -1487,9 +1487,9 @@ const TESTS = [
     pane.innerHTML = "";
     pane.scrollTop = 0;
     var wrap = el("div", { class: "audio-panel" });
-    wrap.appendChild(el("h3", {}, ["Phần nghe"]));
-    wrap.appendChild(el("p", {}, ["Audio chỉ phát MỘT lần, không tạm dừng, không tua lại — giống thi thật. Hãy đeo tai nghe, kiểm tra âm lượng, đọc lướt câu hỏi rồi bấm \"Bắt đầu nghe\". Đồng hồ chạy cùng audio; hết audio còn " + test.transferMinutes + " phút để rà soát và nộp bài. Bài tự nộp khi hết giờ."]));
-    var startBtn = el("button", { class: "btn btn-primary", id: "audio-start" }, ["▶ Bắt đầu nghe"]);
+    wrap.appendChild(el("h3", {}, ["Listening"]));
+    wrap.appendChild(el("p", {}, ["The audio plays ONCE only. You cannot pause or rewind, just like in the real test. Put on your headphones, check the volume, read through the questions, then click \"Start listening\". The timer runs with the audio; after the audio ends you have " + test.transferMinutes + " minutes to check your answers and submit. The test is submitted automatically when time is up."]));
+    var startBtn = el("button", { class: "btn btn-primary", id: "audio-start" }, ["▶ Start listening"]);
     var bar = el("div", { class: "audio-bar", hidden: "" }, [el("div", { id: "audio-fill" })]);
     var time = el("div", { class: "audio-time", id: "audio-time", hidden: "" }, [el("span", { id: "audio-cur" }, ["0:00"]), el("span", { id: "audio-tot" }, ["--:--"])]);
     var status = el("div", { class: "audio-status", id: "audio-status" }, []);
@@ -1522,13 +1522,13 @@ const TESTS = [
     a.addEventListener("ended", function() {
       audioState.ended = true;
       var st = $("#audio-status");
-      if (st) { st.className = "audio-status warn"; st.textContent = "Đã hết bài nghe. Bạn còn " + test.transferMinutes + " phút để rà soát câu trả lời rồi nộp bài."; }
+      if (st) { st.className = "audio-status warn"; st.textContent = "The audio has finished. You have " + test.transferMinutes + " minutes to check your answers and submit."; }
     });
     a.addEventListener("error", function() {
       var st = $("#audio-status");
       if (st && !audioState.stopped) {
         st.className = "audio-status warn";
-        st.textContent = "Không tải được file audio. Hãy kiểm tra mạng, tải lại trang rồi thử lại.";
+        st.textContent = "The audio could not be loaded. Check your connection, reload the page and try again.";
         startBtn.disabled = false;
       }
     });
@@ -1540,13 +1540,13 @@ const TESTS = [
         bar.hidden = false; time.hidden = false;
         var st = $("#audio-status");
         st.className = "audio-status";
-        st.textContent = "Đang phát — hãy vừa nghe vừa điền đáp án.";
+        st.textContent = "Playing — listen and write your answers.";
         startTimer();
       }).catch(function() {
         startBtn.disabled = false;
         var st = $("#audio-status");
         st.className = "audio-status warn";
-        st.textContent = "Chưa phát được audio. Bấm lại \"Bắt đầu nghe\" (kiểm tra trình duyệt không chặn âm thanh).";
+        st.textContent = "The audio could not start. Click \"Start listening\" again (make sure your browser is not blocking sound).";
       });
     });
   }
@@ -1675,7 +1675,7 @@ const TESTS = [
     var row = el("div", { class: "qitem" });
     row.appendChild(qNumBadge(it.num));
     var sel = el("select");
-    sel.appendChild(el("option", { value: "" }, ["— chọn —"]));
+    sel.appendChild(el("option", { value: "" }, ["— select —"]));
     options.forEach(function(o) { sel.appendChild(el("option", { value: o.key }, [o.key + ". " + o.text])); });
     sel.value = state.answers[it.num] || "";
     sel.addEventListener("change", function() { state.answers[it.num] = sel.value; markAnswered(it.num); });
@@ -1688,7 +1688,7 @@ const TESTS = [
   function renderTextItem(it) {
     var row = el("div", { class: "qitem" });
     row.appendChild(qNumBadge(it.num));
-    var input = el("input", { type: "text", placeholder: "câu trả lời" });
+    var input = el("input", { type: "text", placeholder: "answer" });
     input.value = state.answers[it.num] || "";
     input.addEventListener("input", function() { state.answers[it.num] = input.value; markAnswered(it.num); });
     row.appendChild(el("div", { class: "qprompt" }, [it.prompt, input]));
@@ -1729,7 +1729,7 @@ const TESTS = [
     row.appendChild(qNumBadge(it.num));
     var sel = el("select");
     ["", "YES", "NO", "NOT GIVEN"].forEach(function(v) {
-      sel.appendChild(el("option", { value: v }, [v === "" ? "— chọn —" : v]));
+      sel.appendChild(el("option", { value: v }, [v === "" ? "— select —" : v]));
     });
     sel.value = state.answers[it.num] || "";
     sel.addEventListener("change", function() { state.answers[it.num] = sel.value; markAnswered(it.num); });
@@ -1879,8 +1879,8 @@ const TESTS = [
     }).length;
     var total = state.flatQuestions.length;
     var msg = answeredCount < total
-      ? "Bạn mới trả lời " + answeredCount + "/" + total + " câu. Nộp bài ngay?"
-      : "Nộp bài?";
+      ? "You have answered " + answeredCount + "/" + total + " questions. Submit now?"
+      : "Submit your test?";
     showConfirm(msg, function() { submitExam(false); });
   }
 
@@ -1927,9 +1927,9 @@ const TESTS = [
           for (var n = a; n <= b; n++) {
             results.push({
               num: n, correct: setMatch,
-              userAnswer: userArr.join(", ") || "(chưa chọn)",
-              correctAnswers: [q.accepted.join(" hoặc ")],
-              prompt: "Chọn 2 đáp án đúng (câu " + q.num + ")",
+              userAnswer: userArr.join(", ") || "(not selected)",
+              correctAnswers: [q.accepted.join(" or ")],
+              prompt: "Choose 2 correct answers (questions " + q.num + ")",
               passageIdx: pIdx, isMultiRow: true,
             });
           }
@@ -1969,9 +1969,9 @@ const TESTS = [
   function setSendStatus(kind) {
     var s = $("#send-status");
     s.className = "send-status " + (kind === "ok" ? "ok" : kind === "fail" ? "fail" : "");
-    if (kind === "ok") s.textContent = "✓ Đã tự động gửi kết quả cho cô.";
-    else if (kind === "fail") s.textContent = "Chưa tự động gửi được kết quả — hãy chụp màn hình hoặc gửi mã bên dưới cho cô.";
-    else s.textContent = "Đang gửi kết quả cho cô...";
+    if (kind === "ok") s.textContent = "✓ Your result has been sent to your teacher automatically.";
+    else if (kind === "fail") s.textContent = "Your result could not be sent automatically — please take a screenshot or send the code below to your teacher.";
+    else s.textContent = "Sending your result to your teacher...";
   }
 
   function buildResultCode(record) {
@@ -1979,11 +1979,11 @@ const TESTS = [
     var when = pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + "/" + d.getFullYear() + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
     return [
       state.currentTest.kind === "listening" ? "IELTS-LISTENING" : "IELTS-READING",
-      (state.user && state.user.name) || "Học sinh",
+      (state.user && state.user.name) || "Student",
       record.testTitle,
       record.score + "/" + record.total,
       "Band " + record.band,
-      when + (record.auto ? " (hết giờ)" : ""),
+      when + (record.auto ? " (time up)" : ""),
     ].join(" | ");
   }
 
@@ -2011,9 +2011,9 @@ const TESTS = [
     $("#view-results").style.display = "block";
 
     $("#results-test-title").textContent = state.currentTest.title;
-    $("#results-sub").textContent = auto ? "Đã hết giờ — bài nộp tự động" : "Đã nộp bài";
+    $("#results-sub").textContent = auto ? "Time is up — submitted automatically" : "Submitted";
     $("#score-n").textContent = graded.score + "/" + graded.total;
-    $("#score-headline").textContent = graded.score >= graded.total * 0.7 ? "Làm tốt lắm!" : "Đã hoàn thành bài thi";
+    $("#score-headline").textContent = graded.score >= graded.total * 0.7 ? "Well done!" : "Test completed";
     $("#score-band").textContent = band;
     $("#score-ring").style.setProperty("--pct", Math.round((graded.score / graded.total) * 100));
 
@@ -2034,12 +2034,12 @@ const TESTS = [
       var item = el("div", { class: "review-item" }, [
         el("div", { class: "review-badge " + (r.correct ? "correct" : "incorrect") }, [r.correct ? "✓" : "✕"]),
         el("div", { class: "review-body" }, [
-          el("div", {}, [el("b", { class: "q" }, ["Câu " + r.num + "."]), r.prompt]),
+          el("div", {}, [el("b", { class: "q" }, ["Q" + r.num + ". "]), r.prompt]),
           el("div", { class: "review-answers" }, r.correct
-            ? [el("span", { class: "right" }, ["Bạn trả lời: " + (r.userAnswer || "—")])]
+            ? [el("span", { class: "right" }, ["Your answer: " + (r.userAnswer || "—")])]
             : [
-                el("span", { class: "wrong" }, ["Bạn: " + (r.userAnswer || "(bỏ trống)")]),
-                el("span", { class: "right" }, ["Đáp án đúng: " + r.correctAnswers.join(" hoặc ")]),
+                el("span", { class: "wrong" }, ["You: " + (r.userAnswer || "(blank)")]),
+                el("span", { class: "right" }, ["Correct answer: " + r.correctAnswers.join(" or ")]),
               ]),
         ]),
       ]);
@@ -2113,7 +2113,7 @@ const TESTS = [
       if (!seen[key]) { seen[key] = true; titles.push(key); }
     });
     sel.innerHTML = "";
-    sel.appendChild(el("option", { value: "" }, ["Tất cả đề thi"]));
+    sel.appendChild(el("option", { value: "" }, ["All tests"]));
     titles.forEach(function(t) { sel.appendChild(el("option", { value: t }, [t])); });
     sel.value = titles.indexOf(current) !== -1 ? current : "";
   }
@@ -2135,9 +2135,9 @@ const TESTS = [
     var statsGrid = $("#teacher-stats");
     statsGrid.innerHTML = "";
     [
-      ["Lượt nộp bài", rows.length],
-      ["Học sinh", Object.keys(uniqueStudents).length],
-      ["Điểm trung bình", rows.length ? avgScore.toFixed(1) + "/40" : "—"],
+      ["Submissions", rows.length],
+      ["Students", Object.keys(uniqueStudents).length],
+      ["Average score", rows.length ? avgScore.toFixed(1) + "/40" : "—"],
     ].forEach(function(pair) {
       statsGrid.appendChild(el("div", { class: "card breakdown-tile" }, [
         el("div", { class: "k" }, [pair[0]]),
@@ -2156,12 +2156,12 @@ const TESTS = [
     $("#teacher-table").hidden = false;
     rows.forEach(function(r) {
       body.appendChild(el("tr", {}, [
-        el("td", {}, [r.studentName || "(không rõ)"]),
+        el("td", {}, [r.studentName || "(unknown)"]),
         el("td", {}, [r.testTitle || r.testId || "-"]),
         el("td", {}, [(r.score != null ? r.score : "-") + "/" + (r.total || 40)]),
         el("td", {}, [el("span", { class: "band-pill" }, ["Band " + r.band])]),
         el("td", {}, [fmtDate(r.submittedAt)]),
-        el("td", {}, [r.auto ? "Hết giờ (tự nộp)" : ""]),
+        el("td", {}, [r.auto ? "Time up (auto-submitted)" : ""]),
       ]));
     });
   }
@@ -2174,7 +2174,7 @@ const TESTS = [
         $("#teacher-pw-err").textContent = "";
         showTeacherPanel();
       } else {
-        $("#teacher-pw-err").textContent = "Mật khẩu không đúng.";
+        $("#teacher-pw-err").textContent = "Incorrect password.";
       }
     });
     $("#teacher-pw-input").addEventListener("keydown", function(e) {
