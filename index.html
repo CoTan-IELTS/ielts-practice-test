@@ -1282,10 +1282,6 @@ TESTS.sort(function(a,b){var f=function(t){var m=t.id.match(/^(reading|listening
     grid.innerHTML = "";
     var direct = directTestId();
     var list = TESTS.filter(function(t) { return !direct || t.id === direct; });
-    if (direct && list.length) {
-      var all = el("a", { href: location.pathname, class: "show-all-link" }, ["Show all tests"]);
-      grid.appendChild(el("div", { style: "grid-column:1/-1;font-size:13px;" }, [all]));
-    }
     list.forEach(function(test) {
       var qcount = totalQuestionsIn(test);
       var card = el("div", { class: "card test-card" }, [
