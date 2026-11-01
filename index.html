@@ -1392,6 +1392,13 @@ TESTS.sort(function(a,b){var f=function(t){var m=t.id.match(/^(reading|listening
   // Content-Type is left as text/plain to avoid a CORS preflight (which
   // Apps Script's doPost does not handle) — Apps Script still parses the
   // body as JSON on its side via JSON.parse(e.postData.contents).
+  function vnTime(iso) {
+    // Vietnam time (UTC+7), written as dd/mm/yyyy HH:mm:ss to match the Sheet's first column.
+    var d = new Date(new Date(iso).getTime() + 7 * 3600 * 1000);
+    return pad2(d.getUTCDate()) + "/" + pad2(d.getUTCMonth() + 1) + "/" + d.getUTCFullYear() + " " +
+      pad2(d.getUTCHours()) + ":" + pad2(d.getUTCMinutes()) + ":" + pad2(d.getUTCSeconds());
+  }
+
   function sendToSheet(record) {
     if (!SHEET_ENDPOINT) return Promise.reject(new Error("no_sheet_endpoint"));
     var payload = {
@@ -1402,7 +1409,7 @@ TESTS.sort(function(a,b){var f=function(t){var m=t.id.match(/^(reading|listening
       score: record.score,
       total: record.total,
       band: record.band,
-      submittedAt: record.submittedAt,
+      submittedAt: vnTime(record.submittedAt),
       auto: record.auto,
     };
     return fetch(SHEET_ENDPOINT, {
