@@ -1410,6 +1410,9 @@ TESTS.sort(function(a,b){var f=function(t){var m=t.id.match(/^(reading|listening
       total: record.total,
       band: record.band,
       submittedAt: vnTime(record.submittedAt),
+      startedAt: record.startedAt ? vnTime(record.startedAt) : "",
+      durationMin: record.startedAt ? Math.round((new Date(record.submittedAt) - new Date(record.startedAt)) / 600) / 100 : "",
+      details: record.details || [],
       auto: record.auto,
     };
     return fetch(SHEET_ENDPOINT, {
@@ -2050,6 +2053,9 @@ TESTS.sort(function(a,b){var f=function(t){var m=t.id.match(/^(reading|listening
       submittedAt: new Date().toISOString(),
       startedAt: state.examStartedAt,
       auto: !!auto,
+      details: graded.results.map(function(r) {
+        return { q: r.num, answer: String(r.userAnswer || ""), correctAnswer: (r.correctAnswers || []).slice(0, 3).join(" / "), ok: !!r.correct };
+      }),
     };
     // Show results immediately (never block the student on the network),
     // then report honestly whether the result reached the teacher's Sheet.
