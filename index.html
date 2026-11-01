@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Luyện Đọc IELTS</title>
+<title>Luyện thi IELTS</title>
 <style>
   :root {
     --ink: #1c2530;
@@ -343,6 +343,27 @@
   }
   .modal-box p { font-size: 14.5px; color: var(--ink); margin: 0 0 18px; line-height: 1.5; }
   .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+  /* ---- Listening mode ---- */
+  .exam-body.listening { grid-template-columns: 1fr; }
+  .exam-body.listening #passage-pane { height: auto; min-height: 0; overflow: visible; padding: 16px 22px; }
+  .exam-body.listening #question-pane { height: calc(100vh - 340px); min-height: 380px; }
+  .audio-panel { font-family: "Inter", sans-serif; }
+  .audio-panel h3 { margin: 0 0 6px; font-size: 16px; }
+  .audio-panel p { margin: 4px 0 10px; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+  .audio-panel [hidden] { display: none !important; }
+  .audio-bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; margin: 8px 0 4px; }
+  .audio-bar > div { height: 100%; width: 0%; background: var(--accent); transition: width .5s linear; }
+  .audio-time { font-size: 12px; color: var(--ink-faint); display: flex; justify-content: space-between; }
+  .audio-status { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--accent-ink); }
+  .audio-status.warn { color: var(--bad); }
+  .sec-header { font-family: "Fraunces", serif; font-size: 20px; margin: 26px 0 10px; padding-top: 14px; border-top: 2px solid var(--line); scroll-margin-top: 150px; }
+  .sec-header:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+  .mcq-item { margin-bottom: 16px; font-family: "Inter", sans-serif; font-size: 13.5px; }
+  .mcq-q { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+  .mcq-opts { margin-left: 38px; }
+  .mcq-opts label { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; cursor: pointer; }
+  .mcq-opts input { accent-color: var(--accent); }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -356,7 +377,7 @@
   <div id="view-auth">
     <div class="card auth-card">
       <div class="brand-mark" style="margin:0 auto 14px;">IR</div>
-      <h1 style="font-size:22px;">Luyện Đọc IELTS</h1>
+      <h1 style="font-size:22px;">Luyện thi IELTS</h1>
       <p>Đăng nhập bằng tên để bắt đầu làm bài và lưu lại kết quả của bạn.</p>
       <input id="name-input" type="text" placeholder="Tên của bạn" maxlength="40" autocomplete="off">
       <button class="btn btn-primary" id="login-btn" style="width:100%;">Vào làm bài</button>
@@ -370,7 +391,7 @@
       <div class="brand">
         <div class="brand-mark">IR</div>
         <div>
-          <div class="brand-name">Luyện Đọc IELTS</div>
+          <div class="brand-name">Luyện thi IELTS</div>
           <div class="brand-sub">Practice · Chấm điểm tự động</div>
         </div>
       </div>
@@ -731,7 +752,176 @@ const TESTS = [
         ],
       },
     ],
-  },
+  }
+,
+  {
+    id: "listening-test-2",
+    kind: "listening",
+    title: "Road to IELTS — Listening Practice Test 2",
+    durationMinutes: 37.5,
+    audio: "listening-test-2.mp3",
+    transferMinutes: 10,
+    passages: [
+      {
+        title: "Section 1",
+        heading: "Questions 1–10",
+        paragraphs: [],
+        questions: [
+          {
+            type: "notes-completion",
+            instructions: "Questions 1–6. Complete the form below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer. (Application Form for use of Library Internet Service — Example: Existing cardholder? Yes)",
+            groups: [
+              { heading: "Application Form for use of Library Internet Service", lines: [
+                { text: "Family name: Milton" },
+                { text: "First names: __BLANK__ Jayne", num: 1, accepted: ["lynda"] },
+                { text: "Address: __BLANK__, 35 Maximilian Way, Whitfield", num: 2, accepted: ["unit 15", "unit fifteen"] },
+                { text: "Post Code: __BLANK__", num: 3, accepted: ["5577", "55 77", "double five double seven"] },
+                { text: "Occupation: Nurse (works the __BLANK__)", num: 4, accepted: ["night shift", "the night shift"] },
+                { text: "Home phone: N/A    Mobile: 0412 214 418" },
+                { text: "Type of ID: __BLANK__", num: 5, accepted: ["swipe card", "swipecard"] },
+                { text: "ID number: AZ 1985331" },
+                { text: "Date of Birth: 25th __BLANK__", num: 6, accepted: ["september 1975", "sept 1975", "sep 1975", "september, 1975"] },
+              ] },
+            ],
+          },
+          {
+            type: "multi-select",
+            num: "7-8",
+            pick: 2,
+            instructions: "Questions 7 and 8. Choose TWO letters, A–E. What will the woman use the internet for?",
+            options: [
+              { key: "A", text: "trade & exchange" },
+              { key: "B", text: "research" },
+              { key: "C", text: "email" },
+              { key: "D", text: "social networking" },
+              { key: "E", text: "job vacancies" },
+            ],
+            accepted: ["A", "C"],
+          },
+          {
+            type: "short-answer",
+            instructions: "Questions 9 and 10. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+            items: [
+              { num: 9, prompt: "How much does it cost to register as an internet user?", accepted: ["fifteen dollars", "$15", "15 dollars", "15", "fifteen", "15$"] },
+              { num: 10, prompt: "What is the maximum amount of time allowed per single daily internet session?", accepted: ["60 minutes", "sixty minutes", "one hour", "1 hour", "an hour", "60 mins", "60 min", "60", "sixty", "1 hr"] },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Section 2",
+        heading: "Questions 11–20",
+        paragraphs: [],
+        questions: [
+          {
+            type: "mcq",
+            instructions: "Questions 11–15. Choose the correct letter A, B or C.",
+            items: [
+              { num: 11, prompt: "The guided bushwalk is suitable for", options: [{ key: "A", text: "adults only" }, { key: "B", text: "children over 12 and adults" }, { key: "C", text: "children over 8 accompanied by a parent" }], accepted: ["B"] },
+              { num: 12, prompt: "On the bird observation outing, it is recommended that you have", options: [{ key: "A", text: "waterproof footwear" }, { key: "B", text: "a bird identification book" }, { key: "C", text: "binoculars" }], accepted: ["A"] },
+              { num: 13, prompt: "For the trip to the sand dunes, a company will donate", options: [{ key: "A", text: "water" }, { key: "B", text: "tools" }, { key: "C", text: "gloves" }], accepted: ["A"] },
+              { num: 14, prompt: "The bush tucker excursion will cost (per person)", options: [{ key: "A", text: "$15" }, { key: "B", text: "$12" }, { key: "C", text: "$7" }], accepted: ["B"] },
+              { num: 15, prompt: "The deadline to register for the bush tucker outing is", options: [{ key: "A", text: "25 November" }, { key: "B", text: "15 November" }, { key: "C", text: "10 November" }], accepted: ["C"] },
+            ],
+          },
+          {
+            type: "notes-completion",
+            instructions: "Questions 16–20. Complete the table below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+            groups: [
+              { heading: "Bush walk — Leader: Glenn Ford — Venue: Springvale", lines: [
+                { text: "Date: __BLANK__", num: 16, accepted: ["2 july", "2nd july", "july 2", "july 2nd", "second july", "the second of july", "2 jul"] },
+                { text: "Time: __BLANK__ – 1pm", num: 17, accepted: ["9.15 am", "9:15 am", "9.15am", "9:15am", "9.15", "9:15", "nine fifteen", "nine fifteen am", "9 15 am"] },
+              ] },
+              { heading: "Bird watching — Date: 10 September — Venue: Camford — Time: 4.30–6.30pm", lines: [
+                { text: "Leader: Joy Black, club __BLANK__", num: 18, accepted: ["president", "the president"] },
+              ] },
+              { heading: "Sand dunes — Leader: Rex Rose — Date: 26 November — Time: 8.30–10.30am", lines: [
+                { text: "Venue: __BLANK__", num: 19, accepted: ["observation hut", "the observation hut"] },
+              ] },
+              { heading: "Bush tucker — Leader: Jim Kerr, ranger — Date: 3 December — Venue: Carson Hills", lines: [
+                { text: "Time: 10am – __BLANK__", num: 20, accepted: ["2 pm", "2pm", "two pm", "2", "two", "2.00 pm", "2:00 pm", "2.00", "2:00", "two oclock", "2 oclock", "2 o'clock"] },
+              ] },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Section 3",
+        heading: "Questions 21–30",
+        paragraphs: [],
+        questions: [
+          {
+            type: "short-answer",
+            instructions: "Questions 21–25. Complete the sentences below. Write NO MORE THAN TWO WORDS for each answer.",
+            items: [
+              { num: 21, prompt: "Students must follow ________ to prevent accidents in the lab.", accepted: ["safety procedures", "directions", "safety rules", "safety directions"] },
+              { num: 22, prompt: "The students have not been using ________ while in the lab.", accepted: ["eye protection", "safety glasses", "goggles", "safety goggles"] },
+              { num: 23, prompt: "Students cannot eat or drink until ________ is finished and they have washed their hands.", accepted: ["clean-up", "clean up", "cleanup"] },
+              { num: 24, prompt: "Tessa should tie her hair back to avoid danger when she is working with a ________ or chemicals.", accepted: ["naked flame", "naked flames"] },
+              { num: 25, prompt: "Students must wear long sleeves and shoes made of ________ in the lab.", accepted: ["leather"] },
+            ],
+          },
+          {
+            type: "mcq",
+            instructions: "Questions 26–28. Choose the correct letter A, B or C.",
+            items: [
+              { num: 26, prompt: "Which student is currently using an appropriate notebook?", options: [{ key: "A", text: "Vincent" }, { key: "B", text: "Tessa" }, { key: "C", text: "Neither student" }], accepted: ["C"] },
+              { num: 27, prompt: "The tutor says that writing observations in complete sentences", options: [{ key: "A", text: "is often not a good use of time" }, { key: "B", text: "makes them easier to interpret later" }, { key: "C", text: "means that others can understand them" }], accepted: ["B"] },
+              { num: 28, prompt: "The students must write dates", options: [{ key: "A", text: "next to each drawing" }, { key: "B", text: "next to each written section" }, { key: "C", text: "next to each drawing and written section" }], accepted: ["C"] },
+            ],
+          },
+          {
+            type: "multi-select",
+            num: "29-30",
+            pick: 2,
+            instructions: "Questions 29 and 30. Choose TWO letters, A–E. Which TWO things must be included in the conclusion to the experiment?",
+            options: [
+              { key: "A", text: "the questions investigated" },
+              { key: "B", text: "the solutions to the questions" },
+              { key: "C", text: "the student’s own thoughts about the experiment" },
+              { key: "D", text: "the length of time spent on the experiment" },
+              { key: "E", text: "the student’s signature" },
+            ],
+            accepted: ["C", "E"],
+          },
+        ],
+      },
+      {
+        title: "Section 4",
+        heading: "Questions 31–40",
+        paragraphs: [],
+        questions: [
+          {
+            type: "notes-completion",
+            instructions: "Questions 31–40. Complete the notes below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer. (Climate change)",
+            groups: [
+              { heading: "HUMAN FACTORS", lines: [
+                { text: "Cutting down trees for __BLANK__", num: 31, accepted: ["fuel"] },
+                { text: "Industrial Revolution" },
+                { text: "__BLANK__", num: 32, accepted: ["combustion engine"] },
+                { text: "Increase in population → deforestation" },
+              ] },
+              { heading: "KNOWN EFFECTS", lines: [
+                { text: "Over previous 130 yrs: temp. ↗ by 0.6 °C" },
+                { text: "Since Ind. Rev.: CO₂ ↗ by 30% & Methane ↗ by __BLANK__ (from mining, animals, rice paddies)", num: 33, accepted: ["145%", "145 per cent", "145 percent"] },
+                { text: "N₂O ↗ (from __BLANK__ esp. fertiliser; waste management; car exhausts)", num: 34, accepted: ["agriculture"] },
+                { text: "Greenhouse Effect: gases form __BLANK__ → heat trapped → Earth warms up", num: 35, accepted: ["barrier", "a barrier"] },
+              ] },
+              { heading: "FUTURE EFFECTS", lines: [
+                { text: "1. Rise in sea levels ← ice melting. Table (sea level → number of people at risk):" },
+                { text: "1998 levels: __BLANK__", num: 36, accepted: ["46 million"] },
+                { text: "+50 cm: 92 million" },
+                { text: "+1 metre: __BLANK__", num: 37, accepted: ["118 million"] },
+                { text: "2. Change in __BLANK__ → more arid areas → population movement to cities", num: 38, accepted: ["vegetation zones"] },
+                { text: "3. Increase in pests and __BLANK__ e.g. malaria", num: 39, accepted: ["disease", "diseases"] },
+                { text: "4. Change in ecosystems: shift in __BLANK__ – some die, others multiply; deserts get hotter & bigger", num: 40, accepted: ["species composition"] },
+              ] },
+            ],
+          },
+        ],
+      },
+    ],
+  }
 ];
 
 </script>
@@ -823,9 +1013,12 @@ const TESTS = [
       return d.toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
     } catch (e) { return iso; }
   }
-  function bandFromScore(score) {
-    // Standard-ish IELTS Academic Reading raw-score-to-band conversion table.
-    var table = [
+  function bandFromScore(score, test) {
+    // Standard-ish IELTS raw-score-to-band conversion tables (Reading vs Listening).
+    var table = (test && test.kind === "listening") ? [
+      [39, 9], [37, 8.5], [35, 8], [32, 7.5], [30, 7], [26, 6.5],
+      [23, 6], [18, 5.5], [16, 5], [13, 4.5], [10, 4], [8, 3.5], [6, 3]
+    ] : [
       [39, 9], [37, 8.5], [35, 8], [33, 7.5], [30, 7], [27, 6.5],
       [23, 6], [19, 5.5], [15, 5], [13, 4.5], [10, 4], [8, 3.5], [6, 3]
     ];
@@ -1005,6 +1198,7 @@ const TESTS = [
     $("#exit-btn").addEventListener("click", function() {
       showConfirm("Thoát mà không lưu kết quả?", function() {
         stopTimer();
+        stopAudio();
         enterDashboard();
       });
     });
@@ -1059,7 +1253,9 @@ const TESTS = [
       var qcount = totalQuestionsIn(test);
       var card = el("div", { class: "card test-card" }, [
         el("h3", {}, [test.title]),
-        el("div", { class: "test-meta" }, [qcount + " câu hỏi · " + test.durationMinutes + " phút · " + test.passages.length + " bài đọc"]),
+        el("div", { class: "test-meta" }, [test.kind === "listening"
+          ? qcount + " câu hỏi · khoảng " + Math.round(test.durationMinutes) + " phút (nghe 1 lần) · " + test.passages.length + " phần nghe"
+          : qcount + " câu hỏi · " + test.durationMinutes + " phút · " + test.passages.length + " bài đọc"]),
         el("button", { class: "btn btn-primary" }, ["Bắt đầu làm bài"]),
       ]);
       card.querySelector("button").addEventListener("click", function() { startExam(test); });
@@ -1259,13 +1455,100 @@ const TESTS = [
     $("#view-exam").style.display = "block";
 
     $("#exam-title").textContent = test.title;
+    var isL = test.kind === "listening";
+    $(".exam-body").classList.toggle("listening", isL);
     renderPassageTabs();
     renderPassage(0);
     renderQuestionPane(0);
     renderNavGrid();
 
-    state.timerRemaining = test.durationMinutes * 60;
-    startTimer();
+    state.timerRemaining = Math.round(test.durationMinutes * 60);
+    if (isL) {
+      setupListening(test);
+      updateTimerDisplay();
+    } else {
+      startTimer();
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Listening: audio plays ONCE, no pause / seek (IELTS style).
+  // The countdown starts together with the audio.
+  // ---------------------------------------------------------------
+  var audioState = { el: null, started: false, ended: false, stopped: false };
+  function stopAudio() {
+    audioState.stopped = true;
+    if (audioState.el) { try { audioState.el.pause(); } catch (e) {} }
+  }
+  function setupListening(test) {
+    stopAudio();
+    audioState = { el: null, started: false, ended: false, stopped: false };
+    var pane = $("#passage-pane");
+    pane.innerHTML = "";
+    pane.scrollTop = 0;
+    var wrap = el("div", { class: "audio-panel" });
+    wrap.appendChild(el("h3", {}, ["Phần nghe"]));
+    wrap.appendChild(el("p", {}, ["Audio chỉ phát MỘT lần, không tạm dừng, không tua lại — giống thi thật. Hãy đeo tai nghe, kiểm tra âm lượng, đọc lướt câu hỏi rồi bấm \"Bắt đầu nghe\". Đồng hồ chạy cùng audio; hết audio còn " + test.transferMinutes + " phút để rà soát và nộp bài. Bài tự nộp khi hết giờ."]));
+    var startBtn = el("button", { class: "btn btn-primary", id: "audio-start" }, ["▶ Bắt đầu nghe"]);
+    var bar = el("div", { class: "audio-bar", hidden: "" }, [el("div", { id: "audio-fill" })]);
+    var time = el("div", { class: "audio-time", id: "audio-time", hidden: "" }, [el("span", { id: "audio-cur" }, ["0:00"]), el("span", { id: "audio-tot" }, ["--:--"])]);
+    var status = el("div", { class: "audio-status", id: "audio-status" }, []);
+    wrap.appendChild(startBtn);
+    wrap.appendChild(bar);
+    wrap.appendChild(time);
+    wrap.appendChild(status);
+    pane.appendChild(wrap);
+
+    var a = new Audio();
+    a.preload = "auto";
+    a.src = test.audio;
+    audioState.el = a;
+    function mmss(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + (t % 60 < 10 ? "0" : "") + (t % 60); }
+    a.addEventListener("loadedmetadata", function() { $("#audio-tot").textContent = mmss(a.duration); });
+    a.addEventListener("timeupdate", function() {
+      if (!a.duration) return;
+      $("#audio-fill").style.width = (a.currentTime / a.duration * 100) + "%";
+      $("#audio-cur").textContent = mmss(a.currentTime);
+    });
+    // Block pausing (e.g. media keys) and seeking.
+    a.addEventListener("pause", function() {
+      if (audioState.started && !audioState.ended && !audioState.stopped) { a.play().catch(function() {}); }
+    });
+    var lastT = 0;
+    a.addEventListener("seeking", function() {
+      if (Math.abs(a.currentTime - lastT) > 2 && !audioState.ended && !audioState.stopped) { a.currentTime = lastT; }
+    });
+    a.addEventListener("timeupdate", function() { if (!a.seeking) lastT = a.currentTime; });
+    a.addEventListener("ended", function() {
+      audioState.ended = true;
+      var st = $("#audio-status");
+      if (st) { st.className = "audio-status warn"; st.textContent = "Đã hết bài nghe. Bạn còn " + test.transferMinutes + " phút để rà soát câu trả lời rồi nộp bài."; }
+    });
+    a.addEventListener("error", function() {
+      var st = $("#audio-status");
+      if (st && !audioState.stopped) {
+        st.className = "audio-status warn";
+        st.textContent = "Không tải được file audio. Hãy kiểm tra mạng, tải lại trang rồi thử lại.";
+        startBtn.disabled = false;
+      }
+    });
+    startBtn.addEventListener("click", function() {
+      startBtn.disabled = true;
+      a.play().then(function() {
+        audioState.started = true;
+        startBtn.hidden = true;
+        bar.hidden = false; time.hidden = false;
+        var st = $("#audio-status");
+        st.className = "audio-status";
+        st.textContent = "Đang phát — hãy vừa nghe vừa điền đáp án.";
+        startTimer();
+      }).catch(function() {
+        startBtn.disabled = false;
+        var st = $("#audio-status");
+        st.className = "audio-status warn";
+        st.textContent = "Chưa phát được audio. Bấm lại \"Bắt đầu nghe\" (kiểm tra trình duyệt không chặn âm thanh).";
+      });
+    });
   }
 
   function flattenQuestions(test) {
@@ -1294,6 +1577,11 @@ const TESTS = [
     state.currentTest.passages.forEach(function(p, idx) {
       var btn = el("button", { class: "ptab" + (idx === state.activePassageIdx ? " active" : "") }, [p.title]);
       btn.addEventListener("click", function() {
+        if (state.currentTest.kind === "listening") {
+          var h = $("#sec-" + idx);
+          if (h) h.scrollIntoView({ block: "start", behavior: "smooth" });
+          return;
+        }
         state.activePassageIdx = idx;
         renderPassageTabs();
         renderPassage(idx);
@@ -1318,11 +1606,21 @@ const TESTS = [
     });
   }
 
-  function renderQuestionPane(idx) {
-    var passage = state.currentTest.passages[idx];
+  function renderAllSections() {
     var pane = $("#question-pane");
     pane.innerHTML = "";
     pane.scrollTop = 0;
+    state.currentTest.passages.forEach(function(p, i) {
+      pane.appendChild(el("div", { class: "sec-header", id: "sec-" + i }, [p.title + " — " + p.heading]));
+      renderQuestionPane(i, true);
+    });
+  }
+
+  function renderQuestionPane(idx, append) {
+    if (!append && state.currentTest.kind === "listening") return renderAllSections();
+    var passage = state.currentTest.passages[idx];
+    var pane = $("#question-pane");
+    if (!append) { pane.innerHTML = ""; pane.scrollTop = 0; }
 
     passage.questions.forEach(function(q) {
       var group = el("div", { class: "qgroup" });
@@ -1347,6 +1645,8 @@ const TESTS = [
         q.items.forEach(function(it) { group.appendChild(renderHeadingItem(it, q.options)); });
       } else if (q.type === "short-answer") {
         q.items.forEach(function(it) { group.appendChild(renderTextItem(it)); });
+      } else if (q.type === "mcq") {
+        q.items.forEach(function(it) { group.appendChild(renderMcqItem(it)); });
       } else if (q.type === "term-match") {
         q.items.forEach(function(it) { group.appendChild(renderTermMatchItem(it, q.options)); });
       } else if (q.type === "yes-no-notgiven") {
@@ -1394,6 +1694,21 @@ const TESTS = [
     row.appendChild(el("div", { class: "qprompt" }, [it.prompt, input]));
     markAnswered(it.num);
     return row;
+  }
+
+  function renderMcqItem(it) {
+    var box = el("div", { class: "mcq-item" });
+    box.appendChild(el("div", { class: "mcq-q" }, [qNumBadge(it.num), el("div", {}, [it.prompt])]));
+    var opts = el("div", { class: "mcq-opts" });
+    it.options.forEach(function(o) {
+      var rb = el("input", { type: "radio", name: "mcq-" + it.num, value: o.key });
+      rb.checked = state.answers[it.num] === o.key;
+      rb.addEventListener("change", function() { state.answers[it.num] = o.key; markAnswered(it.num); });
+      opts.appendChild(el("label", {}, [rb, el("span", {}, [el("b", {}, [o.key + "  "]), o.text])]));
+    });
+    box.appendChild(opts);
+    markAnswered(it.num);
+    return box;
   }
 
   function renderTermMatchItem(it, options) {
@@ -1495,10 +1810,12 @@ const TESTS = [
     state.flatQuestions.forEach(function(fq) {
       var cell = el("button", { class: "navcell", id: "navcell-" + fq.num }, [String(fq.num)]);
       cell.addEventListener("click", function() {
-        state.activePassageIdx = fq.passageIdx;
-        renderPassageTabs();
-        renderPassage(fq.passageIdx);
-        renderQuestionPane(fq.passageIdx);
+        if (state.currentTest.kind !== "listening") {
+          state.activePassageIdx = fq.passageIdx;
+          renderPassageTabs();
+          renderPassage(fq.passageIdx);
+          renderQuestionPane(fq.passageIdx);
+        }
         setTimeout(function() {
           var target = $("#qnum-" + fq.num);
           if (target) target.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -1583,7 +1900,7 @@ const TESTS = [
 
     test.passages.forEach(function(passage, pIdx) {
       passage.questions.forEach(function(q) {
-        if (q.type === "heading-match" || q.type === "term-match" || q.type === "yes-no-notgiven") {
+        if (q.type === "heading-match" || q.type === "term-match" || q.type === "yes-no-notgiven" || q.type === "mcq") {
           q.items.forEach(function(it) {
             var ok = gradeAnswer(state.answers[it.num], it.accepted, false);
             results.push({ num: it.num, correct: ok, userAnswer: state.answers[it.num] || "", correctAnswers: it.accepted, prompt: it.prompt, passageIdx: pIdx });
@@ -1627,8 +1944,9 @@ const TESTS = [
 
   function submitExam(auto) {
     stopTimer();
+    stopAudio();
     var graded = gradeExam();
-    var band = bandFromScore(graded.score);
+    var band = bandFromScore(graded.score, state.currentTest);
     var record = {
       testId: state.currentTest.id,
       testTitle: state.currentTest.title,
@@ -1660,7 +1978,7 @@ const TESTS = [
     var d = new Date(record.submittedAt);
     var when = pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + "/" + d.getFullYear() + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
     return [
-      "IELTS-READING",
+      state.currentTest.kind === "listening" ? "IELTS-LISTENING" : "IELTS-READING",
       (state.user && state.user.name) || "Học sinh",
       record.testTitle,
       record.score + "/" + record.total,
